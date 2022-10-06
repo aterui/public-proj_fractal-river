@@ -1,0 +1,62 @@
+---
+title: "Mathematical characterization of fractal river networks"
+output: pdf_document
+bibliography: references.bib
+csl: nature.csl
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source(here::here("code/figure3.R"))
+```
+
+Author: Akira Terui^1,\*^
+
+Email: hanabi0111\@gmail.com
+
+^1^Department of Biology, University of North Carolina at Greensboro, Greensboro, NC 27410, USA
+
+# Maintext
+
+Rivers form complex branching networks, and the ecological implication of river network complexity has gained a great interest over the past few decades [@grantLivingBranchesPopulation2007; @carraraDendriticConnectivityControls2012; @mariMetapopulationPersistenceSpecies2014]. To this end, there have been concerted efforts to construct virtual river networks, aiming to provide theoretical insights into how river network structure controls riverine ecological dynamics. Carraro and Altermatt @carraroOptimalChannelNetworks2022 made a great contribution to this research area by comparing the scaling properties of virtual river networks produced by three different simulation methods - balanced binary trees (BBTs) [@yeakelSynchronisationStabilityRiver2014], random branching networks (RBNs) [@teruiMetapopulationStabilityBranching2018; @teruiEmergentDualScaling2021], and optimal channel networks (OCNs) [@carraroGenerationApplicationRiver2020]. The first two methods have only a few parameters that control river network size (e.g., the number of nodes) and complexity (branching probability). In the meantime, optimal channel networks are spanning trees that suffice a local minimum of a function describing total energy expenditure across the network. Carraro and Altermatt @carraroOptimalChannelNetworks2022 performed extensive analysis and concluded that: (1) OCNs best represent the scaling properties of river networks, such as Horton's law and the exceedance probability of catchment area; (2) branching probability is a scale-dependent quantity as the value changes across spatial resolutions at which river networks are extracted (expressed as the threshold catchment area $A_T$ that initiates channels or pixel size $l$); (3) OCNs most accurately predicted the metapopulation stability and capacity. While I agree that OCNs are capable of reproducing the scaling properties of real river networks, the supporting ground for the rest of the conclusions is, unfortunately, seriously flawed due to the improper mathematical definition/use of scale invariance, dimensions, and units.
+
+First, scale invariance was falsely defined in their article. To explain this, let $y$ be the length of a coastline measured as multiples of a ruler with a unit length $x$ (the "observation scale"), a classical example of scale invariance used in Mandelbrot @mandelbrotHowLongCoast1967. The length $y$ reaches infinity as the scale $x$ approaches zero because a shorter ruler can capture similar, but finer-scale complexity that is ignored by a longer ruler (the lack of characteristic scale). This property, i.e., the part is a reduced-scale image of the whole, is referred to as "statistical self-similarity" that underpins the mathematical characteristics of scale-invariance in the coastline length $y$. Mathematically, such a structure can be characterized by the power-law function[@rodriguez-iturbeFractalRiverBasins2001; @brownFractalNatureNature2002]:
+
+$$
+y = f(x) = cx^z
+$$
+
+where $c$ is the scaling constant and $z$ is the scaling exponent. The scale invariance can be easily proved by multiplying the scaling factor $\lambda$:
+
+$$
+y'=f(\lambda x)=c\lambda^zx^z = \lambda^z f(x) = \lambda^z y
+$$
+
+Thus, the observed object $y = f(x)$ is said to be scale-invariant because the multiplicative extension/shrink of observation scale $x$ results in the same shape of the original object $y$ but with a different scale [@proektScaleInvarianceDynamics2012].
+
+Carraro and Altermatt @carraroOptimalChannelNetworks2022 provided evidence that branching probability $p_r$ follows a power law along the axes of observation scale $A_T$ and pixel size $l$ (i.e., length on a side) using OCNs (Equation 1 in the original article):
+
+$$
+E(p_r) \approx 1.531A_T^{-0.523}A^{-0.032}
+$$
+
+where $A$ is the entire watershed area expressed in the number of pixels; thus, $A \propto l^{-2}$. Also, the authors empirically confirmed the power-law relationship between $p_r$ and $A_T$ using the data from 50 real river networks (Figure 3a in the original article). Therefore, branching probability has a property of scale-invariance. Despite this, the authors claimed that "*Here we show that an alleged property of such random networks (branching probability) is a scale-dependent quantity that does not reflect any recognized metric of rivers' fractal character*..." (Abstract) This interpretation is the opposite as it has been defined in the literature of scale-invariance [@rinaldoEvolutionSelectionRiver2014; @rodriguez-iturbeFractalRiverBasins2001; @brownFractalNatureNature2002], including the author's previous publication [@giomettoScalingBodySize2013]. Therefore, the arguments that build upon this interpretation, which accounts for the majority of this article, are delivered inappropriately to the readers.
+
+Second, dimensions and units are improperly treated in their analysis. A dimension is the power of an axis along which a physical quantity is measured, and a unit is a way to assign a number to a particular dimension to make it relative. For example, length is a dimension (dimension = 1) and meter is a unit of length. Throughout the article, the authors used the number of pixels to measure the river length $N$, the total catchment area $A$, and the threshold catchment area $A_T$. There is no issue to use the number of pixels as a unit. However, a critical problem in their article is that they obscured the dimensions of pixels. For example, they made very unclear that the river length $N$ has a dimension of pixel "length" (dimension = 1), while the total catchment area $A$ and the threshold catchment area $A_T$ have a dimension of pixel "area" (dimension = 2). The authors incorrectly defined $p_r$ as a dimensionless quantity (Methods) despite its unit is [pixel length$^{-1}$] with a dimension of length.
+
+This improper use of units and dimensions caused more serious problems in their analysis of real river networks; they used different pixel sizes (length on a side) among watersheds (`r round(min(df_m$l_m))` m to `r round(max(df_m$l_m))` m; Supplementary Table 2 in the original article), meaning that the same number of pixels translates into very different lengths and areas. To explore the consequences of this improper use of pixels, I recreated Figure 3a using km$^2$ as a unit of the threshold catchment area [@carraroCompareRiverNetworksHttpsZenodo2022].
+
+```{r fig1, fig.width=10, fig.height=4, echo = F, fig.cap="Comparison of Figure 3a in Carraro and Altermatt (2022). Eleven watersheds are highlighted as in the original article. (A) The original Figure 3a with the number of pixels as a unit of threshold catchment area $A_T$ (i.e., the observation scale). (B) The recreated Figure 3a with km$^2$ as a unit of $A_T$. This simple correction led to a completely different depiction of the relationship between branching probability and observation scale."}
+
+print(g0)
+```
+
+This correction clarified that the authors compared branching probability extracted at observation scales that differ two orders in km$^2$ (Figure 1). As a result, the observation scale $A_T$ rarely changed the rank of branching probability (compare $p_r$ with the same $A_T$ in km$^2$), as opposed to the author's statement "*by extracting different river networks at various scales (i.e., various* $A_T$ val*ues) and assessing the rivers' rank in terms of* $p_r$*, one observes that rivers that look more "branching" (i.e., have higher* $p_r$*) than others for a given* $A_T$ *value can become less "branching" for a different* $A_T$ *value (Fig. 3).*" Therefore, the reported results in the original article are merely an artifact of inconsistent units of $A_T$ across watersheds. Importantly, this serious issue is pertinent to their metapopulation simulations, as they used pixel size $l$ as a unit of river distance. In their real river examples, the distance of 10 pixels varies from `r as.character(10*round(min(df_m$l_m)))` m to `r as.character(10*round(max(df_m$l_m)))` m among watersheds. The results of their metapopulation simulations rest heavily on the measured distance between nodes because they used exponential curves (i.e., sensitive to units) to approximate distance decay in population synchrony and dispersal. Therefore, it is very likely that substantial errors are contained in Figure 6 and Supplementary Figures 4 -- 9 of the original article that underpin their main conclusion that OCNs most accurately predicted the metapopulation stability and capacity. Although the authors explained that the number of pixels among real watersheds were aligned to make them comparable to virtual river networks (Methods), they instead could have tweaked the virtual river networks to avoid this fundamental problem.
+
+Carraro and Altermatt [@carraroOptimalChannelNetworks2022] offered an important perspective to the use of the different classes of virtual river networks. Therefore, a full re-interpretation/re-analysis is warranted to provide valid insights into how we assess river network structure.
+
+## Data availability
+
+There is no new data associated with this manuscript. Codes are available at <https://github.com/aterui/public-proj_carraro-cee>
+
+## Reference

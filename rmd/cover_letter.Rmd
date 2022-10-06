@@ -1,0 +1,14 @@
+---
+output: pdf_document
+date: '2022-06-29'
+---
+
+Dear Editor;
+
+I am submitting Matters Arising to express my concerns on the recent article by Carroro and Altermatt 2022 <https://www.nature.com/articles/s43247-022-00454-1>. In my understanding, their article contains serious flaws in their analysis and interpretation. It would be extremely important for this manuscript to be reviewed by experts in the field of scale-invariance.
+
+Thank you for your careful consideration in advance.
+
+Sincerely,
+
+Akira Terui
