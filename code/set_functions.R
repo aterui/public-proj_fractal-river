@@ -55,7 +55,7 @@ arc2d8 <- function(x) {
   }
   
   # remove unassigned cells
-  us <- c(247, 255) * 3
+  us <- c(247, 255, 0) * 3
   x[x %in% us] <- NA
   
   return(x)  

@@ -5,12 +5,13 @@ rm(list = ls())
 source(here::here("code/library.R"))
 source(here::here("code/set_functions.R"))
 
+regex_key <- paste(c("ussw", "usnw", "use", "eu"), collapse = "|")
 
 # merge -------------------------------------------------------------------
 
-df_point <- list.files("data_raw",
+df_point <- list.files("data_fmt",
                        full.names = T,
-                       pattern = "outlet_.{1,}.rds") %>% 
+                       pattern = "outlet.rds") %>% 
   lapply(function(x) {
     readRDS(x) %>% 
       mutate(wsd = row_number())
@@ -23,14 +24,13 @@ sf_polygon <- list.files("data_fmt",
                          pattern = "wsd_") %>% 
   lapply(function(x) {
     print(x)
-    print(str_extract(x, "_e.rds|_w.rds"))
+    print(str_extract(x, regex_key))
     
-    readRDS(x) %>% 
+    readRDS(x) %>%
       mutate(area = units::set_units(area, "km^2"),
-             region = str_extract(x, "_e.rds|_w.rds"),
-             region = ifelse(region == "_e.rds", "e", "w")) %>% 
+             region = str_extract(x, regex_key)) %>%
       left_join(df_point %>% dplyr::select(-geometry),
-                by = c("wsd", "region"))
+                by = c("wsd"))
   }) %>% 
   bind_rows() %>% 
   rmapshaper::ms_simplify()

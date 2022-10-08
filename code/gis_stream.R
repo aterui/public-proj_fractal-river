@@ -4,25 +4,31 @@
 source(here::here("code/library.R"))
 source(here::here("code/set_functions.R"))
 
+regex_key <- paste(paste(rep(c("dir", "upa")),
+                         rep(c("ussw", "usnw", "use", "eu"), each = 2),
+                         sep = "_"), collapse = "|")
+
 
 # data --------------------------------------------------------------------
 
-fname <- c(paste0(tempdir(), "\\dir_d8_", c("e", "w"), ".tif"),
-           paste0(tempdir(), "\\upa_", c("e", "w"), ".tif"),
-           paste0(tempdir(), "\\stream_", c("e", "w"), ".tif"),
-           paste0(tempdir(), "\\stream_", c("e", "w"), ".shp"),
-           paste0(tempdir(), "\\outlet", ".shp"))
+## temporary file names
+fname <- c(paste0(tempdir(), "\\dir_", c("ussw", "usnw", "use", "eu"), ".tif"),
+           paste0(tempdir(), "\\upa_", c("ussw", "usnw", "use", "eu"), ".tif"),
+           paste0(tempdir(), "\\stream_", c("ussw", "usnw", "use", "eu"), ".tif"),
+           paste0(tempdir(), "\\stream_", c("ussw", "usnw", "use", "eu"), ".shp"))
 
+## call raster
 list_rast <- list.files(here::here("data_fmt"),
                         full.names = T,
-                        pattern = "upa|dir") %>% 
+                        pattern = "(upa)|(dir)") %>% 
   lapply(rast)
 
+## save to temporary folder
 lapply(seq_len(length(list_rast)),
        FUN = function(i) {
          
          key <- str_extract(terra::sources(list_rast[[i]]),
-                            pattern = "dir_d8_e|dir_d8_w|upa_e|upa_w") 
+                            pattern = regex_key)
          
          terra::writeRaster(list_rast[[i]],
                             filename = fname[str_detect(fname, key)],
@@ -32,14 +38,15 @@ lapply(seq_len(length(list_rast)),
 
 # whitebox ----------------------------------------------------------------
 
-df_x <- expand.grid(a = round(10^seq(0, log(500, 10), length = 10)),
-                    region = c("_e", "_w")) %>% 
+a <- rev(round(10^seq(0, log(1000, 10), length = 10)))
+
+## extract streams with different A_t values
+df_x <- expand.grid(a = a,
+                    region = c("ussw", "usnw", "use", "eu")) %>% 
   mutate(region = as.character(region))
 
 foreach(x = iterators::iter(df_x, by = "row")) %do% {
-  
   ## select/define file names
-  z <- fname[str_detect(fname, (x$region))]
   sf_line <- paste0("data_fmt/epsg4326_",
                     "str_a",
                     x$a,
@@ -48,28 +55,24 @@ foreach(x = iterators::iter(df_x, by = "row")) %do% {
   print(sf_line)
   
   ## stream delineation
-  wbt_extract_streams(flow_accum = z[str_detect(z, "upa")],
-                      output = z[str_detect(z, paste0("stream",
-                                                      x$region,
-                                                      ".tif"))],
-                      threshold = x$a)
-
-  wbt_raster_streams_to_vector(streams = z[str_detect(z, paste0("stream",
-                                                                x$region,
-                                                                ".tif"))],
-                               d8_pntr = z[str_detect(z, "dir")],
-                               output = z[str_detect(z, paste0("stream",
-                                                               x$region,
-                                                               ".shp"))])
+  whitebox::wbt_extract_streams(flow_accum = fname[str_detect(fname, paste0("upa_", x$region, ".tif"))],
+                                output = fname[str_detect(fname, paste0("stream_", x$region, ".tif"))],
+                                threshold = x$a)
+  
+  whitebox::wbt_raster_streams_to_vector(streams = fname[str_detect(fname, paste0("stream_", x$region, ".tif"))],
+                                         d8_pntr = fname[str_detect(fname, paste0("dir_", x$region, ".tif"))],
+                                         output = fname[str_detect(fname, paste0("stream_", x$region, ".shp"))])
   
   ## st save
-  st_read(z[str_detect(z, paste0("stream",
-                                 x$region,
-                                 ".shp"))]) %>%
-    st_set_crs(4326) %>%
+  sf::st_read(fname[str_detect(fname, paste0("stream_", x$region, ".shp"))]) %>%
+    sf::st_set_crs(4326) %>%
     saveRDS(sf_line)
+  
+  remove(list = ls()[which(ls() != "fname")])
+  gc(reset = TRUE)
 }
 
-file.remove(fname)
-
+file.remove(list.files("C:\\Users\\a_terui\\AppData\\Local\\Temp",
+                       full.names = TRUE,
+                       recursive = TRUE))
 
