@@ -77,6 +77,6 @@ g_bpr <- g_rate + (g_bpr1 + inset_element(g_bpr2,
                                           0.4, 0.1, 0.95, 0.6))
 
 ggsave(g_bpr,
-       filename = "output/figure_bpr.pdf",
+       filename = here::here("output/figure_bpr.pdf"),
        height = 4,
        width = 9)
