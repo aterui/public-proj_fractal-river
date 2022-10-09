@@ -39,10 +39,7 @@ fit0 <- lm(log(pr, 10) ~ log(a_t, 10) + river - 1,
 fit1 <- lm(log(pr, 10) ~ log(a_t, 10) * river - 1,
            df_pr)
 
-## summary statistics
-fit0_r2_large <- summary(fit0)$adj.r.squared
-fit1_r2_large <- summary(fit1)$adj.r.squared
-bf_large <- exp((BIC(fit1) - BIC(fit0))/2)
+BF <- exp((BIC(fit1) - BIC(fit0))/2)
 
 ## data frame for prediction
 X <- df_pr %>% 

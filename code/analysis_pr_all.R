@@ -26,8 +26,7 @@ df_pr <- df_str %>%
   ungroup() %>% 
   mutate(prop_a = a_t / area,
          pr = n / tl) %>% 
-  filter(prop_a < 0.05,  # 5% a_t to total area
-         area > 10000) %>%
+  filter(prop_a < 0.05) %>% # 5% a_t to total area
   rename(river = name)
 
 
@@ -39,10 +38,7 @@ fit0 <- lm(log(pr, 10) ~ log(a_t, 10) + river - 1,
 fit1 <- lm(log(pr, 10) ~ log(a_t, 10) * river - 1,
            df_pr)
 
-## summary statistics
-fit0_r2_large <- summary(fit0)$adj.r.squared
-fit1_r2_large <- summary(fit1)$adj.r.squared
-bf_large <- exp((BIC(fit1) - BIC(fit0))/2)
+BF <- exp((BIC(fit1) - BIC(fit0))/2)
 
 ## data frame for prediction
 X <- df_pr %>% 
@@ -62,6 +58,29 @@ df_pr <- df_pr %>%
 
 # plot --------------------------------------------------------------------
 
+## color setup
+river <- unique(df_pr$river)
+
+ex_river <- c("KleineEmme",
+              "Chisone",
+              "Tanaro",
+              "Magra",
+              "Piave",
+              "Eel",
+              "Thompson",
+              "Willamette",
+              "Marias",
+              "Klamath",
+              "Owyhee") %>% sort()
+
+v_river <- c(river[river %in% ex_river],
+             river[!(river %in% ex_river)])
+
+cols <- c(rainbow(length(ex_river)),
+          rep(grey(0.8, 0.4), length(river) - length(ex_river)))
+
+names(cols) <- v_river
+
 ## plot: raw pr
 g_pr <- df_pr %>%
   ggplot(aes(x = a_t,
@@ -71,6 +90,9 @@ g_pr <- df_pr %>%
   geom_line(data = df_pred) +
   scale_x_continuous(trans = "log10") +
   scale_y_continuous(trans = "log10") +
+  scale_color_manual(values = cols,
+                     breaks = ex_river,
+                     labels = ex_river) +
   labs(color = "River",
        y = expression(p[r]~"[km"^"-1"*"]"),
        x = expression(A[t]~"[km"^"2"*"]")) +
@@ -85,6 +107,9 @@ g_prp <- df_pr %>%
   geom_point(alpha = 0.3) +
   geom_line(data = df_pred) +
   scale_x_continuous(trans = "log10") +
+  scale_color_manual(values = cols,
+                     breaks = ex_river,
+                     labels = ex_river) +
   labs(color = "River",
        y = expression(bar(p)[r]~"[-]"),
        x = expression(A[t]~"[km"^"2"*"]")) +
@@ -94,9 +119,9 @@ g_prp <- df_pr %>%
 
 # export ------------------------------------------------------------------
 
-g_large <- g_pr + g_prp + plot_layout(guides = "collect")
+g_all <- g_pr + g_prp + plot_layout(guides = "collect")
 
-ggsave(g_large,
-       filename = here::here("output/figure_pr_large.pdf"),
+ggsave(g_all,
+       filename = here::here("output/figure_pr_all.pdf"),
        height = 4,
        width = 9.5)

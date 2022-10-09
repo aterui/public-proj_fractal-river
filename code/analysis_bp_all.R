@@ -1,14 +1,13 @@
 
 # setup -------------------------------------------------------------------
 
-rm(list = ls())
 source(here::here("code/library.R"))
 source(here::here("code/set_functions.R"))
 
 
 # data --------------------------------------------------------------------
 
-df_str <- readRDS("data_fmt/epsg4326_strnet.rds") %>% 
+df_str <- readRDS(here::here("data_fmt/epsg4326_strnet.rds")) %>% 
   as_tibble() %>% 
   dplyr::select(-geometry,
                 -which(str_detect(colnames(.), pattern = "\\.\\d{1,}"))) %>% 
@@ -16,9 +15,9 @@ df_str <- readRDS("data_fmt/epsg4326_strnet.rds") %>%
   filter(length > 0.09) ## greater than minimum stream length (km) possible
 
 
-# bp ----------------------------------------------------------------------
+# pr ----------------------------------------------------------------------
 
-df_bp <- df_str %>% 
+df_pr <- df_str %>% 
   mutate(length = as.numeric(length)) %>% 
   group_by(name, a_t) %>% 
   summarize(n = n(),
@@ -26,23 +25,26 @@ df_bp <- df_str %>%
             area = as.numeric(unique(area))) %>% 
   ungroup() %>% 
   mutate(prop_a = a_t / area,
-         bp = n / tl) %>% 
-  filter(prop_a < 0.0125) %>% # 1.25% a_t to total area
+         pr = n / tl) %>% 
+  filter(prop_a < 0.05) %>% # 5% a_t to total area
   rename(river = name)
 
 
 # model fitting -----------------------------------------------------------
 
-fit0 <- lm(log(bp, 10) ~ log(a_t, 10) + river - 1,
-           df_bp)
+fit0 <- lm(log(pr, 10) ~ log(a_t, 10) + river - 1,
+           df_pr)
 
-fit1 <- lm(log(bp, 10) ~ log(a_t, 10) * river - 1,
-           df_bp)
+fit1 <- lm(log(pr, 10) ~ log(a_t, 10) * river - 1,
+           df_pr)
 
-BF <- exp((BIC(fit1) - BIC(fit0))/2)
+## summary statistics
+fit0_r2_all <- summary(fit0)$adj.r.squared
+fit1_r2_all <- summary(fit1)$adj.r.squared
+bf_all <- exp((BIC(fit1) - BIC(fit0))/2)
 
 ## data frame for prediction
-X <- df_bp %>% 
+X <- df_pr %>% 
   group_by(river) %>% 
   summarize(a_t = seq(min(a_t), max(a_t), length = 10)) %>% 
   ungroup()
@@ -50,17 +52,17 @@ X <- df_bp %>%
 y <- predict(fit0, X)
 
 df_pred <- X %>% 
-  mutate(bp = 10^y,
-         bp_prime = 10^y / a_t^coef(fit0)[1])
+  mutate(pr = 10^y,
+         pr_prime = 10^y / a_t^coef(fit0)[1])
 
-df_bp <- df_bp %>% 
-  mutate(bp_prime = bp / a_t^coef(fit0)[1])
+df_pr <- df_pr %>% 
+  mutate(pr_prime = pr / a_t^coef(fit0)[1])
 
 
 # plot --------------------------------------------------------------------
 
 ## color setup
-river <- unique(df_bp$river)
+river <- unique(df_pr$river)
 
 ex_river <- c("KleineEmme",
               "Chisone",
@@ -82,10 +84,10 @@ cols <- c(rainbow(length(ex_river)),
 
 names(cols) <- v_river
 
-## plot: raw bp
-g_bp <- df_bp %>%
+## plot: raw pr
+g_pr <- df_pr %>%
   ggplot(aes(x = a_t,
-             y = bp,
+             y = pr,
              color = river)) +
   geom_point(alpha = 0.3) +
   geom_line(data = df_pred) +
@@ -100,10 +102,10 @@ g_bp <- df_bp %>%
   theme_bw() +
   theme(panel.grid = element_blank())
 
-## plot: raw bp
-g_bpp <- df_bp %>%
+## plot: non-dimensional pr
+g_prp <- df_pr %>%
   ggplot(aes(x = a_t,
-             y = bp_prime,
+             y = pr_prime,
              color = river)) +
   geom_point(alpha = 0.3) +
   geom_line(data = df_pred) +
@@ -117,4 +119,12 @@ g_bpp <- df_bp %>%
   theme_bw() +
   theme(panel.grid = element_blank())
 
-g_all <- g_bp + g_bpp + plot_layout(guides = "collect")
+
+# export ------------------------------------------------------------------
+
+g_all <- g_pr + g_prp + plot_layout(guides = "collect")
+
+ggsave(g_all,
+       filename = here::here("output/figure_pr_all.pdf"),
+       height = 4,
+       width = 9.5)

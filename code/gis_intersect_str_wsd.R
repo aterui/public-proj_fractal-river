@@ -62,7 +62,7 @@ sf_line <- sf_line %>%
 ## export
 ### complete stream network
 saveRDS(sf_line,
-        "data_fmt/epsg4326_strnet.rds")
+        here::here("data_fmt/epsg4326_strnet.rds"))
 
 ### complete watershed polygons
 saveRDS(sf_polygon,
