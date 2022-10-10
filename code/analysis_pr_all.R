@@ -25,8 +25,9 @@ df_pr <- df_str %>%
             area = as.numeric(unique(area))) %>% 
   ungroup() %>% 
   mutate(prop_a = a_t / area,
-         pr = n / tl) %>% 
-  filter(prop_a < 0.5) %>% # 50% a_t to total area
+         pr = n / tl,
+         n = as.numeric(n)) %>% 
+  #filter(prop_a < 0.5) %>% # 50% a_t to total area
   rename(river = name)
 
 
@@ -80,7 +81,7 @@ v_river <- c(river[river %in% ex_river],
              river[!(river %in% ex_river)])
 
 cols <- c(rainbow(length(ex_river)),
-          rep(grey(0.8, 0.4), length(river) - length(ex_river)))
+          rep(grey(0.75, 0.2), length(river) - length(ex_river)))
 
 names(cols) <- v_river
 
@@ -89,14 +90,19 @@ g_pr <- df_pr %>%
   ggplot(aes(x = a_t,
              y = pr,
              color = river)) +
-  geom_point(alpha = 0.3) +
-  geom_line(data = df_pred) +
+  geom_point(data = . %>% filter(!(river %in% ex_river)),
+             aes(alpha = log(n, 10))) +
+  geom_line(data = df_pred %>% filter(!(river %in% ex_river))) +
+  geom_point(data = . %>% filter(river %in% ex_river),
+             aes(alpha = log(n, 10))) +
+  geom_line(data = df_pred %>% filter(river %in% ex_river)) +
   scale_x_continuous(trans = "log10") +
   scale_y_continuous(trans = "log10") +
   scale_color_manual(values = cols,
                      breaks = ex_river,
                      labels = ex_river) +
   labs(color = "River",
+       alpha = expression(log[10]~italic(N[L])),
        y = expression(p[r]~"[km"^"-1"*"]"),
        x = expression(A[T]~"[km"^"2"*"]")) +
   theme_bw() +
@@ -107,19 +113,28 @@ g_prp <- df_pr %>%
   ggplot(aes(x = prop_a * 100,
              y = pr_prime,
              color = river)) +
-  geom_point(alpha = 0.3) +
-  geom_line(data = df_pred) +
-  scale_x_continuous(trans = "log10") +
+  geom_point(data = . %>% filter(!(river %in% ex_river)),
+             aes(alpha = log(n, 10))) +
+  geom_line(data = df_pred %>% filter(!(river %in% ex_river))) +
+  geom_point(data = . %>% filter(river %in% ex_river),
+             aes(alpha = log(n, 10))) +
+  geom_line(data = df_pred %>% filter(river %in% ex_river)) +
+  scale_x_continuous(trans = "log10", labels = scales::comma) +
   scale_y_continuous(trans = "log10") +
   scale_color_manual(values = cols,
                      breaks = ex_river,
                      labels = ex_river) +
   labs(color = "River",
+       alpha = expression(log[10]~italic(N[L])),
        y = expression(bar(p)[r]~"[-]"),
        x = expression(A[T]~"/A [%]")) +
   theme_bw() +
-  theme(panel.grid = element_blank()) +
-  facet_wrap(facets = ~river, 10, 5)
+  theme(panel.grid = element_blank())
+
+g_prp_facet <- g_prp +
+  facet_wrap(facets = ~river, 10, 5) +
+  guides(color = "none") +
+  theme(strip.background = element_blank())
 
 
 # export ------------------------------------------------------------------
@@ -128,5 +143,10 @@ g_all <- g_pr + g_prp + plot_annotation(tag_levels = "A") + plot_layout(guides =
 
 ggsave(g_all,
        filename = here::here("output/figure_pr_all.pdf"),
-       height = 4,
-       width = 9.5)
+       height = 6,
+       width = 12.5)
+
+ggsave(g_prp_facet,
+       filename = here::here("output/figure_prp_facet.pdf"),
+       height = 11,
+       width = 12)
