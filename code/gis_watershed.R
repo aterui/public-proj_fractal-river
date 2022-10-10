@@ -51,7 +51,7 @@ list.files(here::here("data_fmt"),
 
 # snapping ----------------------------------------------------------------
 
-df_x <- expand.grid(a = 200,
+df_x <- expand.grid(a = 100,
                     region = c("ussw", "usnw", "use", "eu")) %>% 
   mutate(region = as.character(region))
 
@@ -75,7 +75,7 @@ foreach(x = iterators::iter(df_x, by = "row")) %do% {
                                                                x$region,
                                                                ".tif"))],
                               output = z[str_detect(z, "pour")],
-                              snap_dist = 0.05) # unit in degree
+                              snap_dist = 0.5) # unit in degree
   
   ## watershed delineation
   wbt_watershed(d8_pntr = z[str_detect(z, "dir")],
