@@ -39,7 +39,7 @@ fit0 <- lm(log(pr, 10) ~ log(a_t, 10) + river - 1,
 fit1 <- lm(log(pr, 10) ~ log(a_t, 10) * river - 1,
            df_pr)
 
-BF <- exp((BIC(fit1) - BIC(fit0))/2)
+BF_large <- exp((BIC(fit1) - BIC(fit0))/2)
 
 ## data frame for prediction
 X <- df_pr %>% 

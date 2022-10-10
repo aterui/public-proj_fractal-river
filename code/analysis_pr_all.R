@@ -38,8 +38,10 @@ fit0 <- lm(log(pr, 10) ~ log(a_t, 10) + river - 1,
 fit1 <- lm(log(pr, 10) ~ log(a_t, 10) * river - 1,
            df_pr)
 
-BF <- exp((BIC(fit1) - BIC(fit0))/2)
-
+BF_all <- exp((BIC(fit1) - BIC(fit0))/2)
+r2_0_all <- summary(fit0)$adj.r.squared
+r2_1_all <- summary(fit1)$adj.r.squared
+  
 ## data frame for prediction
 X <- df_pr %>% 
   group_by(river) %>% 
@@ -119,7 +121,7 @@ g_prp <- df_pr %>%
 
 # export ------------------------------------------------------------------
 
-g_all <- g_pr + g_prp + plot_layout(guides = "collect")
+g_all <- g_pr + g_prp + plot_annotation(tag_levels = "A") + plot_layout(guides = "collect")
 
 ggsave(g_all,
        filename = here::here("output/figure_pr_all.pdf"),
