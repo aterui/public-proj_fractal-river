@@ -38,18 +38,24 @@ lapply(seq_len(length(list_rast)),
 
 # whitebox ----------------------------------------------------------------
 
-a <- rev(round(10^seq(0, log(1000, 10), length = 10)))
+a <- rev(round(10^seq(log(1, 10),
+                      log(1000, 10),
+                      length = 20),
+               1))
 
 ## extract streams with different A_t values
-df_x <- expand.grid(a = a,
+df_x <- expand.grid(a_t = a,
                     region = c("ussw", "usnw", "use", "eu")) %>% 
-  mutate(region = as.character(region))
+  mutate(region = as.character(region),
+         label = str_pad(a_t * 10,
+                         width = 5,
+                         pad = "0"))
 
 foreach(x = iterators::iter(df_x, by = "row")) %do% {
   ## select/define file names
   sf_line <- paste0("data_fmt/epsg4326_",
                     "str_a",
-                    x$a,
+                    x$label,
                     x$region,
                     ".rds")
   print(sf_line)
@@ -57,7 +63,7 @@ foreach(x = iterators::iter(df_x, by = "row")) %do% {
   ## stream delineation
   whitebox::wbt_extract_streams(flow_accum = fname[str_detect(fname, paste0("upa_", x$region, ".tif"))],
                                 output = fname[str_detect(fname, paste0("stream_", x$region, ".tif"))],
-                                threshold = x$a)
+                                threshold = x$a_t)
   
   whitebox::wbt_raster_streams_to_vector(streams = fname[str_detect(fname, paste0("stream_", x$region, ".tif"))],
                                          d8_pntr = fname[str_detect(fname, paste0("dir_", x$region, ".tif"))],
