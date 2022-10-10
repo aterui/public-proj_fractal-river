@@ -77,6 +77,6 @@ tmap_mode("view")
 tm_shape(sf_polygon) +
   tm_polygons(alpha = 0.3) +
   tm_shape(sf_line %>% 
-             filter(a_t == 1)) +
+             filter(a_t == 1000)) +
   tm_lines(alpha = 0.3)
 
