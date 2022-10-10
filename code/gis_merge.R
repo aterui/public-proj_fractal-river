@@ -54,11 +54,13 @@ list_key <- list(ussw = key_ussw,
 ## original: 56.50995498, -132.412977
 ## new: 56.693446, -132.206884
 
-df0 <- read_csv(here::here("data_raw/TableS1_draft.csv")) %>% 
+sf_outlet <- read_csv(here::here("data_raw/TableS1_draft.csv")) %>% 
   rename(id = ...1) %>% 
   select(name, A_km2, lat, long) %>% 
   sf::st_as_sf(coords = c("long", "lat"),
-               crs = st_crs(4326)) %>%
+               crs = st_crs(4326))
+
+sf_outlet %>%
   saveRDS(paste0("data_fmt/outlet.rds"))
 
 
