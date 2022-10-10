@@ -1,5 +1,6 @@
 
 lapply(paste0("code/gis_",
-              c("merge", "stream", "watershed", "intersect_str_wsd"),
+              c("stream", "intersect_str_wsd"),
+              #c("merge", "stream", "watershed", "intersect_str_wsd"),
               ".R"),
        source)
