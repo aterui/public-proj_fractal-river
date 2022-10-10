@@ -46,7 +46,8 @@ sf_line <- list.files("data_fmt",
     readRDS(x) %>% 
       mutate(a_t = str_extract(x, "a\\d{1,}") %>%
                str_extract("\\d{1,}") %>%
-               as.numeric()) %>%
+               as.numeric(),
+             a_t = a_t * 0.1) %>%
       st_join(sf_polygon) %>% 
       drop_na(wsd) %>% 
       filter(!duplicated(FID))
