@@ -26,21 +26,19 @@ df_pr <- df_str %>%
   ungroup() %>% 
   mutate(prop_a = a_t / area,
          pr = n / tl) %>% 
-  filter(prop_a < 0.05) %>% # 5% a_t to total area
+  filter(prop_a < 0.5) %>% # 50% a_t to total area
   rename(river = name)
 
 
 # model fitting -----------------------------------------------------------
 
-fit0 <- lm(log(pr, 10) ~ log(a_t, 10) + river - 1,
-           df_pr)
+fit0 <- MASS::rlm(log(pr, 10) ~ log(a_t, 10) + river - 1,
+                  data = df_pr)
 
-fit1 <- lm(log(pr, 10) ~ log(a_t, 10) * river - 1,
-           df_pr)
+fit1 <- MASS::rlm(log(pr, 10) ~ log(a_t, 10) * river - 1,
+                  df_pr)
 
 BF_all <- exp((BIC(fit1) - BIC(fit0))/2)
-r2_0_all <- summary(fit0)$adj.r.squared
-r2_1_all <- summary(fit1)$adj.r.squared
   
 ## data frame for prediction
 X <- df_pr %>% 
@@ -52,7 +50,10 @@ y <- predict(fit0, X)
 
 df_pred <- X %>% 
   mutate(pr = 10^y,
-         pr_prime = 10^y / a_t^coef(fit0)[1])
+         pr_prime = 10^y / a_t^coef(fit0)[1]) %>% 
+  left_join(df_pr %>% 
+              distinct(river, prop_a),
+            by = "river")
 
 df_pr <- df_pr %>% 
   mutate(pr_prime = pr / a_t^coef(fit0)[1])
@@ -97,26 +98,28 @@ g_pr <- df_pr %>%
                      labels = ex_river) +
   labs(color = "River",
        y = expression(p[r]~"[km"^"-1"*"]"),
-       x = expression(A[t]~"[km"^"2"*"]")) +
+       x = expression(A[T]~"[km"^"2"*"]")) +
   theme_bw() +
   theme(panel.grid = element_blank())
 
 ## plot: non-dimensional pr
 g_prp <- df_pr %>%
-  ggplot(aes(x = a_t,
+  ggplot(aes(x = prop_a * 100,
              y = pr_prime,
              color = river)) +
   geom_point(alpha = 0.3) +
   geom_line(data = df_pred) +
   scale_x_continuous(trans = "log10") +
+  scale_y_continuous(trans = "log10") +
   scale_color_manual(values = cols,
                      breaks = ex_river,
                      labels = ex_river) +
   labs(color = "River",
        y = expression(bar(p)[r]~"[-]"),
-       x = expression(A[t]~"[km"^"2"*"]")) +
+       x = expression(A[T]~"/A [%]")) +
   theme_bw() +
-  theme(panel.grid = element_blank())
+  theme(panel.grid = element_blank()) +
+  facet_wrap(facets = ~river, 10, 5)
 
 
 # export ------------------------------------------------------------------
