@@ -50,6 +50,10 @@ list_key <- list(ussw = key_ussw,
 # outlet ------------------------------------------------------------------
 
 ## data from Carraro & Altermatt
+## coordinates for Stikine is slightly modified for watershed delineation
+## original: 56.50995498, -132.412977
+## new: 56.693446, -132.206884
+
 df0 <- read_csv(here::here("data_raw/TableS1_draft.csv")) %>% 
   rename(id = ...1) %>% 
   select(name, A_km2, lat, long) %>% 
