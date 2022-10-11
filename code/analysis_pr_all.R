@@ -12,7 +12,7 @@ df_str <- readRDS(here::here("data_fmt/epsg4326_strnet.rds")) %>%
   dplyr::select(-geometry,
                 -which(str_detect(colnames(.), pattern = "\\.\\d{1,}"))) %>% 
   mutate(length = as.numeric(length)) %>% 
-  filter(length > 0.09) ## greater than minimum stream length (km) possible
+  filter(length > 0.09) ## greater than minimum stream length (km) possible (DEM resl = 90 m)
 
 
 # pr ----------------------------------------------------------------------
@@ -27,7 +27,6 @@ df_pr <- df_str %>%
   mutate(prop_a = a_t / area,
          pr = n / tl,
          n = as.numeric(n)) %>% 
-  #filter(prop_a < 0.5) %>% # 50% a_t to total area
   rename(river = name)
 
 

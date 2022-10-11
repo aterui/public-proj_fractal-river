@@ -12,7 +12,7 @@ df_str <- readRDS(here::here("data_fmt/epsg4326_strnet.rds")) %>%
   dplyr::select(-geometry,
                 -which(str_detect(colnames(.), pattern = "\\.\\d{1,}"))) %>% 
   mutate(length = as.numeric(length)) %>% 
-  filter(length > 0.09) ## greater than minimum stream length (km) possible
+  filter(length > 0.09) ## greater than minimum stream length (km) possible (DEM resl = 90 m)
 
 
 # pr ----------------------------------------------------------------------
@@ -25,75 +25,19 @@ df_pr <- df_str %>%
             area = as.numeric(unique(area))) %>% 
   ungroup() %>% 
   mutate(prop_a = a_t / area,
-         pr = n / tl) %>% 
-  filter(prop_a < 0.05,  # 5% a_t to total area
-         area > 10000) %>%
+         pr = n / tl,
+         n = as.numeric(n)) %>% 
+  filter(area > 5000) %>% # 50% a_t to total area
   rename(river = name)
 
 
 # model fitting -----------------------------------------------------------
 
-fit0 <- lm(log(pr, 10) ~ log(a_t, 10) + river - 1,
-           df_pr)
+fit0 <- MASS::rlm(log(pr, 10) ~ log(a_t, 10) + river - 1,
+                  data = df_pr)
 
-fit1 <- lm(log(pr, 10) ~ log(a_t, 10) * river - 1,
-           df_pr)
+fit1 <- MASS::rlm(log(pr, 10) ~ log(a_t, 10) * river - 1,
+                  df_pr)
 
-BF_large <- exp((BIC(fit1) - BIC(fit0))/2)
+BF_sub <- exp((BIC(fit1) - BIC(fit0))/2)
 
-## data frame for prediction
-X <- df_pr %>% 
-  group_by(river) %>% 
-  summarize(a_t = seq(min(a_t), max(a_t), length = 10)) %>% 
-  ungroup()
-
-y <- predict(fit0, X)
-
-df_pred <- X %>% 
-  mutate(pr = 10^y,
-         pr_prime = 10^y / a_t^coef(fit0)[1])
-
-df_pr <- df_pr %>% 
-  mutate(pr_prime = pr / a_t^coef(fit0)[1])
-
-
-# plot --------------------------------------------------------------------
-
-## plot: raw pr
-g_pr <- df_pr %>%
-  ggplot(aes(x = a_t,
-             y = pr,
-             color = river)) +
-  geom_point(alpha = 0.3) +
-  geom_line(data = df_pred) +
-  scale_x_continuous(trans = "log10") +
-  scale_y_continuous(trans = "log10") +
-  labs(color = "River",
-       y = expression(p[r]~"[km"^"-1"*"]"),
-       x = expression(A[t]~"[km"^"2"*"]")) +
-  theme_bw() +
-  theme(panel.grid = element_blank())
-
-## plot: non-dimensional pr
-g_prp <- df_pr %>%
-  ggplot(aes(x = a_t,
-             y = pr_prime,
-             color = river)) +
-  geom_point(alpha = 0.3) +
-  geom_line(data = df_pred) +
-  scale_x_continuous(trans = "log10") +
-  labs(color = "River",
-       y = expression(bar(p)[r]~"[-]"),
-       x = expression(A[t]~"[km"^"2"*"]")) +
-  theme_bw() +
-  theme(panel.grid = element_blank())
-
-
-# export ------------------------------------------------------------------
-
-g_large <- g_pr + g_prp + plot_layout(guides = "collect")
-
-ggsave(g_large,
-       filename = here::here("output/figure_pr_large.pdf"),
-       height = 4,
-       width = 9.5)
