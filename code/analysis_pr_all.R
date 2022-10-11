@@ -12,7 +12,7 @@ df_str <- readRDS(here::here("data_fmt/epsg4326_strnet.rds")) %>%
   dplyr::select(-geometry,
                 -which(str_detect(colnames(.), pattern = "\\.\\d{1,}"))) %>% 
   mutate(length = as.numeric(length)) %>% 
-  filter(length > 0.09) ## greater than minimum stream length (km) possible (DEM resl = 90 m)
+  filter(length > 0.09) ## greater than minimum stream length (km) possible (DEM resl = 90m)
 
 
 # pr ----------------------------------------------------------------------
@@ -80,9 +80,12 @@ v_river <- c(river[river %in% ex_river],
              river[!(river %in% ex_river)])
 
 cols <- c(rainbow(length(ex_river)),
-          rep(grey(0.75, 0.2), length(river) - length(ex_river)))
+          rep(grey(0.75, 0.4), length(river) - length(ex_river)))
 
 names(cols) <- v_river
+
+r <- 0.5
+lwd <- 0.2
 
 ## plot: raw pr
 g_pr <- df_pr %>%
@@ -90,11 +93,15 @@ g_pr <- df_pr %>%
              y = pr,
              color = river)) +
   geom_point(data = . %>% filter(!(river %in% ex_river)),
-             aes(alpha = log(n, 10))) +
-  geom_line(data = df_pred %>% filter(!(river %in% ex_river))) +
+             aes(alpha = log(n, 10)),
+             size = r) +
+  geom_line(data = df_pred %>% filter(!(river %in% ex_river)),
+            size = lwd) +
   geom_point(data = . %>% filter(river %in% ex_river),
-             aes(alpha = log(n, 10))) +
-  geom_line(data = df_pred %>% filter(river %in% ex_river)) +
+             aes(alpha = log(n, 10)),
+             size = r) +
+  geom_line(data = df_pred %>% filter(river %in% ex_river),
+            size = lwd) +
   scale_x_continuous(trans = "log10") +
   scale_y_continuous(trans = "log10") +
   scale_color_manual(values = cols,
@@ -102,8 +109,8 @@ g_pr <- df_pr %>%
                      labels = ex_river) +
   labs(color = "River",
        alpha = expression(log[10]~italic(N[L])),
-       y = expression(p[r]~"[km"^"-1"*"]"),
-       x = expression(A[T]~"[km"^"2"*"]")) +
+       y = expression("Branching ratio"~p[r]~"[km"^"-1"*"]"),
+       x = expression("Observation scale"~A[T]~"[km"^"2"*"]")) +
   theme_bw() +
   theme(panel.grid = element_blank())
 
@@ -113,11 +120,15 @@ g_prp <- df_pr %>%
              y = pr_prime,
              color = river)) +
   geom_point(data = . %>% filter(!(river %in% ex_river)),
-             aes(alpha = log(n, 10))) +
-  geom_line(data = df_pred %>% filter(!(river %in% ex_river))) +
+             aes(alpha = log(n, 10)),
+             size = r) +
+  geom_line(data = df_pred %>% filter(!(river %in% ex_river)),
+            size = lwd) +
   geom_point(data = . %>% filter(river %in% ex_river),
-             aes(alpha = log(n, 10))) +
-  geom_line(data = df_pred %>% filter(river %in% ex_river)) +
+             aes(alpha = log(n, 10)),
+             size = r) +
+  geom_line(data = df_pred %>% filter(river %in% ex_river),
+            size = lwd) +
   scale_x_continuous(trans = "log10", labels = scales::comma) +
   scale_y_continuous(trans = "log10") +
   scale_color_manual(values = cols,
@@ -125,8 +136,8 @@ g_prp <- df_pr %>%
                      labels = ex_river) +
   labs(color = "River",
        alpha = expression(log[10]~italic(N[L])),
-       y = expression(bar(p)[r]~"[-]"),
-       x = expression(A[T]~"/A [%]")) +
+       y = expression("Rescaled branching ratio"~bar(p)[r]~"[-]"),
+       x = expression("% observation scale"~A[T]~"/A [%]")) +
   theme_bw() +
   theme(panel.grid = element_blank())
 
@@ -138,12 +149,15 @@ g_prp_facet <- g_prp +
 
 # export ------------------------------------------------------------------
 
-g_all <- g_pr + g_prp + plot_annotation(tag_levels = "A") + plot_layout(guides = "collect")
+g_all <- g_pr + g_prp + 
+  plot_annotation(tag_levels = "A") +
+  plot_layout(guides = "collect") &
+  theme(legend.position = "bottom")
 
 ggsave(g_all,
        filename = here::here("output/figure_pr_all.pdf"),
-       height = 6,
-       width = 12.5)
+       height = 4,
+       width = 10)
 
 ggsave(g_prp_facet,
        filename = here::here("output/figure_prp_facet.pdf"),
