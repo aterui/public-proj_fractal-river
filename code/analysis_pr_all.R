@@ -156,8 +156,8 @@ g_all <- g_pr + g_prp +
 
 ggsave(g_all,
        filename = here::here("output/figure_pr_all.pdf"),
-       height = 4,
-       width = 10)
+       height = 5,
+       width = 9)
 
 ggsave(g_prp_facet,
        filename = here::here("output/figure_prp_facet.pdf"),
