@@ -1,0 +1,46 @@
+---
+title: "Reply to Manuscript ID: COMMSENV-22-0565: Mathematical characterization of fractal river networks"
+output:
+  bookdown::pdf_document2:
+    latex_engine: xelatex
+    toc: false
+fontsize: 11pt
+mainfont: "Times New Roman"
+knit: (function(inputFile, encoding) {
+        rmarkdown::render(inputFile,
+                          encoding = encoding, 
+                          output_dir = "document_output")
+      })
+date: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+
+df_m <- readr::read_csv(here::here("data_raw/TableS1_draft.csv"))
+```
+
+Dear Editor,
+
+Thank you for your time to handle this manuscript. I reviewed the author's reply and comments from the reviewers -- I appreciate the time they spend on reading my manuscript too. Below, I summarize the responses to their concerns:
+
+**Scale-invariance.** The authors wrote their definition of scale invariance in their reply. This confirmed my deep concern as their definition is clearly incorrect, as reviewer 3 pointed it out in their review. Therefore, my point remains valid, and the substantial portion of their manuscript is undermined. Although the authors wrote "*the interpretation of the definition of scale invariance is immaterial...*", this is not true. The author's critique on branching probability is "*...(branching probability) is a **scale-dependent** quantity that does not reflect any recognized metric of rivers' fractal character, and **hence** cannot be a driver of ecological dynamics.*" Therefore, if branching probability is scale-invariant (it is), then their conclusion is not logical at all. Similar arguments are made throughout the manuscript. I have clarified this point (Table 1). Also, I improved the text of scale-invariance to explain it better (3rd paragraph in the revised ms). I hope this clarifies how deep the author's misunderstanding is.
+
+**Dimension.** The authors claimed that their results will not be altered if I use a constant pixel size to estimate branching ratio $p_r$. Reviewers 1 & 2 considered this defense seriously too. According to this comment, I re-analyzed their data quantitatively with a constant pixel size (\~90m at the equator). I obtained three key results. (1) The rank of $\text{E}(p_r)$ (the expected value of branching ratio after accounting for statistical uncertainty) did not change across scales. Therefore, the author's response is incorrect. I have clarified this point in the revised MS (6th paragraph starting with "To explore..."). (2) The author's response actually revealed a deeper problem of their analysis. By definition, branching ratio is the number of links per unit river distance. However, the author's response revealed that they used different units when calculating branching ratios for different rivers. For example, in Toss (smallest pixel size of 103 m), the branching ratio represents the number of links per 0.1 river km. Meanwhile, in Stikine (largest pixel size of 1268 m), the branching ratio represents the number of links per 1.27 river km. Clearly, these are incomparable because units are different. I have clarified this point (5th paragragh in the revised ms). (3) The reanalysis revealed the following statement in the original article is also invalid "...*if different river networks spanning different catchment areas (say, in km*$^2$*) are compared, all of them extracted from the same DEM (same* $l$ *and same* $A_T$ *in km*$^2$*), then the larger river network will appear more branching (i.e., have larger* $p_r$*)...*" In the re-analysis with a constant pixel size and $A_T$, I did not find any correlation between the two. I have clarified this point in the revised ms (7th paragraph).
+
+Note that I added a quantitative analysis for the power law scaling of $p_r$ according to the issue pointed by reviewer 3 (in the original article, the authors used only three observation scales $A_T$ and did not perform any statistical analysis). In the re-analysis, I included up to 20 values of $A_T$ to statistically substantiate the power law.
+
+**Metapopulation simulation.** I have revised the text to better explain why the author's original analysis is seriously flawed. Essentially, they compared incomparable values as explained below. The authors used pixel size $l$ as a unit of "population scale" and "dispersal distance" in their metapopulation simulations. This setup is not a problem if they compare only virtual networks. **However, it is a problem for real rivers.** For example, they assumed a population scale of `r round(min(df_m$l_m))` m in `r df_m$name[which.min(df_m$l_m)]`, while assuming `r round(max(df_m$l_m))` m in `r df_m$name[which.max(df_m$l_m)]`. A reasonable interpretation of this simulation setup is that the authors simulated metapopulation dynamics of "different" species among watersheds. This is not trivial as the population scale defines the number of local populations within a metapopulation -- one of the most influential parameters dictating metapopulation CV (see Equations (2) and (3) in the original article). If one assumes the same population scale across watersheds (i.e., the same species), then `r df_m$name[which.max(df_m$l_m)]` should be \~`r round(max(df_m$l_m) / min(df_m$l_m))` times greater in the number of local populations $N_{p}$ compared to `r df_m$name[which.min(df_m$l_m)]`. This is simply because `r df_m$name[which.max(df_m$l_m)]` is way larger than `r df_m$name[which.min(df_m$l_m)]`. Nevertheless, the authors used a nearly-constant number of $N_p$ for all the 50 real rivers (e.g., $\text{E}(N_p) \approx 1088$ for $A_T = 500$ [pixel area]) by changing the population scale (= pixel size). Similarly, the average dispersal distance $\alpha$ was measured in the unit of pixel length ($\alpha = 100$ [pixel length] in Figure 6 in the original article), meaning that it varies from `r 100 * round(min(df_m$l_m)) * 0.001` km to `r 100 * round(max(df_m$l_m)) * 0.001` km among watersheds when converted to a unit of km. It is difficult to envision that such a huge variation in dispersal capability exists within the same species. Again, the parameter $\alpha$ has a decisive influence on metapopulation CV and capacity in the author's model (see Methods in the original article). Importantly, Figure 6 and Supplementary Figures 4 -- 9 of the original article "aggregated" these metapopulations of different species in real rivers and compared the overall summary statistics (e.g., percentiles) with those obtained from BBTs, RBNs, and OCNs. Here again, the authors compared incomparable values. I have clarified this point (9th paragraph starting with "Lastly, the issue of...")
+
+In summary, the author's reply did not alleviate my concerns. Rather, they revealed deeper problems in their original article. Since there are too many incorrect/improper/contradicting statements in the article, I do not think the authors can address these issues via correction. In particular, I am seriously afraid that this manuscript may facilitate the misunderstanding of the term "scale-invariance" -- "scale invariance" is a deep and wide research topic, which plays critical roles in understanding physical, ecological, or even social network systems. By letting Carraro & Altermatt 2022 out as "peer-reviewed article," it has far-reaching undesired consequences for the scientific community in this research field (especially undergrad and graduate students who are still in the process of learning what "scale-invariance" means). I hope the editorial office of *Communications in Earth and Environment* will make a wise decision on this problematic article.
+
+\newpage
+
+# Detailed concerns
+
+While I briefly responded to the important points raised by the authors and reviewers, I would like to append this note because the author's reply has so many incorrect/improper/contradicting statements.
+
+## Scale-invariance
+
+In the reply, the authors provided their definition of scale-invariance, which is obviously incorrect. The authors wrote:
+
+> *Notably, scale invariance is defined as a property of a function 𝑦 = 𝑓(𝑥) (that is, the relationship between 𝑦 and 𝑥), not of the dependent variable 𝑦 itself*
