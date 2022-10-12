@@ -84,7 +84,7 @@ cols <- c(rainbow(length(ex_river)),
 
 names(cols) <- v_river
 
-r <- 0.5
+r <- 0.75
 lwd <- 0.2
 
 ## plot: raw pr
