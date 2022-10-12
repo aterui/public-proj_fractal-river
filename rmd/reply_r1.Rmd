@@ -12,6 +12,8 @@ knit: (function(inputFile, encoding) {
                           output_dir = "document_output")
       })
 date: "`r Sys.Date()`"
+bibliography: references.bib
+csl: https://www.zotero.org/styles/nature
 ---
 
 ```{r setup, include=FALSE}
@@ -23,7 +25,9 @@ Dear Editor,
 
 Thank you for your time to handle this manuscript. I reviewed the author's reply and comments from the reviewers -- I appreciate the time they spend on reading my manuscript too. Below, I summarize the responses to their concerns:
 
-**Scale-invariance.** The authors wrote their definition of scale invariance in their reply. This confirmed my deep concern as their definition is clearly incorrect, as reviewer 3 pointed it out in their review. Therefore, my point remains valid, and the substantial portion of their manuscript is undermined. Although the authors wrote "*the interpretation of the definition of scale invariance is immaterial...*", this is not true. The author's critique on branching probability is "*...(branching probability) is a **scale-dependent** quantity that does not reflect any recognized metric of rivers' fractal character, and **hence** cannot be a driver of ecological dynamics.*" Therefore, if branching probability is scale-invariant (it is), then their conclusion is not logical at all. Similar arguments are made throughout the manuscript. I have clarified this point (Table 1). Also, I improved the text of scale-invariance to explain it better (3rd paragraph in the revised ms). I hope this clarifies how deep the author's misunderstanding is.
+# Summary
+
+**Scale-invariance.** The authors wrote their definition of scale invariance in their reply. This confirmed my deep concern as their definition is clearly incorrect, as reviewer 3 pointed it out in their review. Therefore, my point remains valid, and the substantial portion of their manuscript is undermined. Although the authors wrote "*the interpretation of the definition of scale invariance is immaterial...*", this is not true. The author's critique on branching probability is "*...(branching probability) is a **scale-dependent** quantity that does not reflect any recognized metric of rivers' fractal character, and **hence** cannot be a driver of ecological dynamics.*" Therefore, if branching ratio/probability is scale-invariant (it is), then their conclusion is not logical at all. Similar arguments are made throughout the manuscript. I have clarified this point (Table 1). Also, I improved the text of scale-invariance to explain it better (3rd paragraph in the revised ms). I hope this clarifies how deep the author's misunderstanding is.
 
 **Dimension.** The authors claimed that their results will not be altered if I use a constant pixel size to estimate branching ratio $p_r$. Reviewers 1 & 2 considered this defense seriously too. According to this comment, I re-analyzed their data quantitatively with a constant pixel size (\~90m at the equator). I obtained three key results. (1) The rank of $\text{E}(p_r)$ (the expected value of branching ratio after accounting for statistical uncertainty) did not change across scales. Therefore, the author's response is incorrect. I have clarified this point in the revised MS (6th paragraph starting with "To explore..."). (2) The author's response actually revealed a deeper problem of their analysis. By definition, branching ratio is the number of links per unit river distance. However, the author's response revealed that they used different units when calculating branching ratios for different rivers. For example, in Toss (smallest pixel size of 103 m), the branching ratio represents the number of links per 0.1 river km. Meanwhile, in Stikine (largest pixel size of 1268 m), the branching ratio represents the number of links per 1.27 river km. Clearly, these are incomparable because units are different. I have clarified this point (5th paragragh in the revised ms). (3) The reanalysis revealed the following statement in the original article is also invalid "...*if different river networks spanning different catchment areas (say, in km*$^2$*) are compared, all of them extracted from the same DEM (same* $l$ *and same* $A_T$ *in km*$^2$*), then the larger river network will appear more branching (i.e., have larger* $p_r$*)...*" In the re-analysis with a constant pixel size and $A_T$, I did not find any correlation between the two. I have clarified this point in the revised ms (7th paragraph).
 
@@ -31,16 +35,84 @@ Note that I added a quantitative analysis for the power law scaling of $p_r$ acc
 
 **Metapopulation simulation.** I have revised the text to better explain why the author's original analysis is seriously flawed. Essentially, they compared incomparable values as explained below. The authors used pixel size $l$ as a unit of "population scale" and "dispersal distance" in their metapopulation simulations. This setup is not a problem if they compare only virtual networks. **However, it is a problem for real rivers.** For example, they assumed a population scale of `r round(min(df_m$l_m))` m in `r df_m$name[which.min(df_m$l_m)]`, while assuming `r round(max(df_m$l_m))` m in `r df_m$name[which.max(df_m$l_m)]`. A reasonable interpretation of this simulation setup is that the authors simulated metapopulation dynamics of "different" species among watersheds. This is not trivial as the population scale defines the number of local populations within a metapopulation -- one of the most influential parameters dictating metapopulation CV (see Equations (2) and (3) in the original article). If one assumes the same population scale across watersheds (i.e., the same species), then `r df_m$name[which.max(df_m$l_m)]` should be \~`r round(max(df_m$l_m) / min(df_m$l_m))` times greater in the number of local populations $N_{p}$ compared to `r df_m$name[which.min(df_m$l_m)]`. This is simply because `r df_m$name[which.max(df_m$l_m)]` is way larger than `r df_m$name[which.min(df_m$l_m)]`. Nevertheless, the authors used a nearly-constant number of $N_p$ for all the 50 real rivers (e.g., $\text{E}(N_p) \approx 1088$ for $A_T = 500$ [pixel area]) by changing the population scale (= pixel size). Similarly, the average dispersal distance $\alpha$ was measured in the unit of pixel length ($\alpha = 100$ [pixel length] in Figure 6 in the original article), meaning that it varies from `r 100 * round(min(df_m$l_m)) * 0.001` km to `r 100 * round(max(df_m$l_m)) * 0.001` km among watersheds when converted to a unit of km. It is difficult to envision that such a huge variation in dispersal capability exists within the same species. Again, the parameter $\alpha$ has a decisive influence on metapopulation CV and capacity in the author's model (see Methods in the original article). Importantly, Figure 6 and Supplementary Figures 4 -- 9 of the original article "aggregated" these metapopulations of different species in real rivers and compared the overall summary statistics (e.g., percentiles) with those obtained from BBTs, RBNs, and OCNs. Here again, the authors compared incomparable values. I have clarified this point (9th paragraph starting with "Lastly, the issue of...")
 
-In summary, the author's reply did not alleviate my concerns. Rather, they revealed deeper problems in their original article. Since there are too many incorrect/improper/contradicting statements in the article, I do not think the authors can address these issues via correction. In particular, I am seriously afraid that this manuscript may facilitate the misunderstanding of the term "scale-invariance" -- "scale invariance" is a deep and wide research topic, which plays critical roles in understanding physical, ecological, or even social network systems. By letting Carraro & Altermatt 2022 out as "peer-reviewed article," it has far-reaching undesired consequences for the scientific community in this research field (especially undergrad and graduate students who are still in the process of learning what "scale-invariance" means). I hope the editorial office of *Communications in Earth and Environment* will make a wise decision on this problematic article.
+In summary, the author's reply did not alleviate my concerns. Rather, they revealed deeper problems in their original article. In particular, I am seriously afraid that this article may facilitate the misunderstanding/misuse of the term "**scale-invariance,**" which is mathematically defined, not a verbal concept. **Scale invariance** is a deep and wide research topic, which plays critical roles in mathematics, physics, ecology, and even social network science, to name just a few. By letting Carraro & Altermatt 2022 out as "peer-reviewed article" in its current form, it has far-reaching *undesired* consequences for the scientific community in this research field (especially for undergrad and graduate students who are still in the process of learning what "scale-invariance" means). I hope the editorial office will consider my concerns seriously.
 
 \newpage
 
-# Detailed concerns
+# Detailed response
 
-While I briefly responded to the important points raised by the authors and reviewers, I would like to append this note because the author's reply has so many incorrect/improper/contradicting statements.
+While I briefly responded to the important points raised by the authors and reviewers, I would like to append this note because the author's reply has so many incorrect/improper statements. Further, they contradict themselves when I looked into their past articles.
 
 ## Scale-invariance
 
-In the reply, the authors provided their definition of scale-invariance, which is obviously incorrect. The authors wrote:
+**Definition.** In their reply, the authors provided *their* definition of scale-invariance. The authors wrote:
 
-> *Notably, scale invariance is defined as a property of a function 𝑦 = 𝑓(𝑥) (that is, the relationship between 𝑦 and 𝑥), not of the dependent variable 𝑦 itself*
+> *Notably, scale invariance is defined as a property of a function* $y=f(x)$ *(that is, the relationship between* $y$ *and* $x$*), not of the dependent variable* $y$ *itself*
+
+As reviewer 3 pointed, this is incorrect. Two clear reasons. First, if $y=f(x)$, and the function $f(x)$ is scale-invariant, then $y$ is said to be scale-invariant because we write $y$ EQUALS $f(x)$. I do not know how to explain this further.
+
+Second, their definition is inconsistent with the formal definition provided by Proekt et al. [@proektScaleInvarianceDynamics2012], which the authors quoted: i.e., a function $f(x)$ is said to be scale-invariant if it suffices $f(\lambda x) = \lambda^z f(x)$ (you can find this formal definition even in Wikipedia <https://en.wikipedia.org/wiki/Scale_invariance>). To explain this, let me write two functions, $g(x)$ and $h(x)$, as:
+
+$$
+\begin{aligned}
+y &= g(x) = cx^z \\
+y^* &= h(x) = c\exp(zx) 
+\end{aligned}
+$$
+
+where $c$ and $z$ are both constants. Under the author's definition of scale-invariance, $g(x)$ and $h(x)$ are both considered as scale-invariant because the relationship between the dependent variable ($y$ or $y^*$) and scale $x$ does change across scales. However, while $g(x)$ suffices $g(\lambda x) = \lambda^z g(x)$, $h(x)$ does not ($h(\lambda x) \ne \lambda^z h(x)$). From this, it is mathematically proved that the author's definition is incorrect.
+
+**Minor points.** Reviewer 2 commented that $A_T$ is inappropriate to prove scale-invariance, as $A_T$ is a lens to view a river network. However, I do not think this is correct. First, $A_T$ has been used for decades to characterize the scale-invariance of river networks (see Rodriquez-Iturbe and Rinaldo [@rodriguez-iturbeFractalRiverBasins2001] for their extensive review on this topic). Second, in the original article [@carraroOptimalChannelNetworks2022], the authors referred specifically to $A_T$ as an observation scale. Below is the author's statement:
+
+> *A second **scale** is then needed to distinguish the portion of the drainage network effectively belonging to the channel network. The simplest but still widely used method defines channels as those pixels whose drainage area exceeds a threshold value* $A_T$*.*
+
+**The word "alleged."** In the original article and their reply, the authors repeatedly used the word "alleged" when criticizing the *apparent* misuse of branching probability in the past research. As I revealed above, nothing was "alleged." This is simply caused by the misdefinition/misuse of the term "scale-invariance" made by the authors. Such expression is beyond disrespectful.
+
+## The lack of characteristic scale
+
+The authors wrote in their reply:
+
+> *...given a river network, it is not possible to univocally characterize its* $p_r$*, because it depends on the scale at which the network is observed (that is, the depth/width/discharge above which a river is defined, subsumed by* $A_T$ *in our study), just as one cannot assign an intrinsic length to a coastline because it depends on the length of the "ruler" used to measure it.*
+
+This exemplifies how deep the authors misunderstanding is. If "*it is not possible to univocally characterize its* $p_r$*,*" this pattern is interpreted as a signature of scale-invariance. This is clearly written in a TEXTBOOK of river geomorphology [@rodriguez-iturbeFractalRiverBasins2001]:
+
+A previous publication [@giomettoScalingBodySize2013], in which Dr. Altermatt is co-authored, also states:
+
+> *Scale invariance, epitomized by power-law probability distributions, requires regularities of the component parts (the species' size distributions) making up the whole [the community size spectra (i.e., the probability distributions of size regardless of species)]. In particular, **a necessary condition for scaling community size spectra is the lack of peaks that pinpoint frequent occurrences**, and therefore excess abundance (and vice versa) within any given range of sizes.*
+
+While not exactly the same, this essentially says the lack of peaks (i.e., characteristic scale) is a necessary condition for scaling (= scale invariance). Therefore, the authors themselves support my claim that $p_r$ is scale-invariant. Since the authors seem not to know the relationship between scale-invariance, scaling, and the lack of characteristic scale, I list below the ties between them.
+
+| Object type     | Sufficient condition | Necessary condition                   |
+|---------------|-------------------|---------------------------|
+| Scale invariant | Scaling              | The lack of characteristic scale      |
+| Scale dependent | Non-scaling          | The existence of characteristic scale |
+
+## Dimension
+
+There are countless numbers of mathematically incorrect/improper/contradicting statements in their reply and their original article. I list a couple of examples below:
+
+> *However, we treated* $p_r$ *as de facto dimensionless, as we did not attribute any specific dimension to the pixel size*
+
+As reviewer 2 & 3 pointed, nothing can be *de facto* dimensionless. Further, the dimension of DEM is two with no doubt because it is projected onto a planar. Seemingly, the authors do not understand the difference between a dimension and unit. They are not identical, as I clearly wrote the difference between them in the letter (and I do not know how to explain this further).
+
+> *To this end, we also observe that previous works^10-13^ using the concept of branching probability* $p$ *expressed* $p$ *as a dimensionless parameter, which is self-evident for a probability.* (reply, L53 -- 55)
+
+Probability is not self-evidently dimensionless. For example, **a probability of observing two individuals in a km**$^2$ **area** [unit: km$^{-2}$] clearly has a dimension of two. Indeed, branching probability -- which is used in my past work [@teruiMetapopulationStabilityBranching2018] -- is dimensional for real rivers as it is measured as a probability of including a confluence or upstream terminal per unit river km [unit: km$^{-1}$]. Also, branching probability/ratio in OCNs have a dimension, as OCNs are simulated in a planar space. In contrast, theoretical branching probability in RBNs and BBTs has no dimension as those do not assume a planar space. The above statement incorrectly interpret the past works.
+
+> *In this case, the relevant scale determining the dimension* $l$ *of a node is the extent of habitat within which individuals (due to e.g. physical constrains) can be assigned to a single population...*
+
+Pixel size $l$ is a unit, not a dimension. If it is a dimension, then Toss has 103 dimensions and Stikine has 1268 dimensions?
+
+> *If one extrapolated the trend lines of Fig. 1b and drew a vertical line at, say,* $A_T = 1~\text{km}^2$*, one would indeed observe a higher* $A_T$ *value for the larger catchments (e.g., Klamath, Owyhee) than the smaller ones (e.g., Kleine Emme, Chisone)* (reply, L53 -- 55)
+
+I re-analyzed the entire dataset with a constant pixel size and $A_T$. I found no correlation between $p_r$ and $A$. As I clarified in the revised letter, this statement emerged from the incosistent units used to estimate $p_r$. In the original article, they used larger pixel sizes for larger watersheds. For example, in Toss (smallest pixel size of 103 m), the branching ratio represents the number of links per 0.1 river km. Meanwhile, in Stikine (largest pixel size of 1268 m), the branching ratio represents the number of links per 1.27 river km. Therefore, this statement is a statistical artifact of inconsistent units. See the revised letter for details.
+
+> *...However, this comparison is improper, as* $A_T = 1~\text{km}^2$ *may be a very fine scale to extract river networks in large (in terms of km2) basins, but a very coarse scale for smaller catchments. A fair comparison with* $A_T$ *expressed in km*$^2$ *would require the use of basins of similar areas in km*$^2$ *and extracted from DEMs with same (or similar) pixel size.*
+
+In my re-analysis in the revised letter, I repeated the analysis for a subset of watersheds with $> 5000~\text{km}^2$, which are large enough to cover the entire range of observation scales used in my analysis ($A_T = 1,...,1000$ km$^2$). Again, I did not find any patterns that support the author's claim.
+
+## Metapopulation simulations
+
+In the original article, the authors emphasized the inappropriateness of using $l$ (pixel size) as a population scale:
+
+# **References**
