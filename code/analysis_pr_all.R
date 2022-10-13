@@ -114,6 +114,11 @@ g_pr <- df_pr %>%
   theme_bw() +
   theme(panel.grid = element_blank())
 
+g_pr_facet <- g_pr +
+  facet_wrap(facets = ~river, 10, 5) +
+  guides(color = "none") +
+  theme(strip.background = element_blank())
+
 ## plot: non-dimensional pr
 g_prp <- df_pr %>%
   ggplot(aes(x = prop_a * 100,
@@ -159,7 +164,12 @@ ggsave(g_all,
        height = 4.5,
        width = 9)
 
+ggsave(g_pr_facet,
+       filename = here::here("output/figure_pr_facet.pdf"),
+       height = 11,
+       width = 11)
+
 ggsave(g_prp_facet,
        filename = here::here("output/figure_prp_facet.pdf"),
        height = 11,
-       width = 12)
+       width = 11)

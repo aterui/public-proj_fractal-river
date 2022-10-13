@@ -30,7 +30,7 @@ Thank you for your time to handle this manuscript. I reviewed the author's reply
 
 **Branching probability and ratio**. Reviewer 2 was confused with the use of these terms. Although the authors wrote as if *branching probability = branching ratio* in the original article, they are not identical. I clarified this point in the revised ms to avoid confusion (2nd paragraph).
 
-**Scale-invariance.** The authors wrote their definition of scale invariance in their reply. This confirmed my deep concern as their definition is clearly incorrect, as reviewer 3 pointed it out in their review. Therefore, my point remains valid, and the substantial portion of their manuscript is undermined. Although the authors wrote "*the interpretation of the definition of scale invariance is immaterial...*", this is not true. The author's critique on branching probability is "*...(branching probability) is a **scale-dependent** quantity that does not reflect any recognized metric of rivers' fractal character, and **hence** cannot be a driver of ecological dynamics.*" Therefore, if branching ratio/probability is scale-invariant (it is), then their conclusion is not logical at all. Similar arguments are made throughout the manuscript. I have clarified this point (Table 1). Also, I improved the text of scale-invariance to explain it better (3rd paragraph in the revised ms). I hope this clarifies how deep the author's misunderstanding is.
+**Scale-invariance.** The authors wrote their definition of scale invariance in their reply. This confirmed my deep concern as their definition is clearly incorrect, as reviewer 3 pointed it out in their review. Therefore, my point remains valid, and the substantial portion of their manuscript is undermined. Although the authors wrote "*the interpretation of the definition of scale invariance is immaterial...*", this is not true. The author's critique on branching probability is "*...(branching probability) is a **scale-dependent** quantity that does not reflect any recognized metric of rivers' fractal character, and **hence** cannot be a driver of ecological dynamics.*" Therefore, if branching ratio/probability is scale-invariant (it is), then their conclusion is not logical at all. Similar arguments are made throughout the manuscript. I have clarified this point (Table 1). Also, I improved the text of scale-invariance to explain it better (3rd paragraph in the revised ms). It is true that the original article did not define scale-invariance; therefore, I rephrased it as "...scale invariance was falsely used..." I hope this clarifies how deep the author's misunderstanding is.
 
 **Dimension.** The authors claimed that their results will not be altered if I use a constant pixel size to estimate branching ratio $p_r$. Reviewers 1 & 2 considered this defense seriously too. According to this comment, I re-analyzed their data quantitatively with a constant pixel size (\~90m at the equator). I obtained three key results. (1) The rank of $\text{E}(p_r)$ (the expected value of branching ratio after accounting for statistical uncertainty) did not change across scales. Therefore, the author's response is incorrect. I have clarified this point in the revised MS (6th paragraph starting with "To explore..."). (2) The author's response actually revealed a deeper problem of their analysis. By definition, branching ratio is the number of links per unit river distance. However, the author's response revealed that they used different units when calculating branching ratios for different rivers. For example, in Toss (smallest pixel size of 103 m), the branching ratio represents the number of links per 0.1 river km. Meanwhile, in Stikine (largest pixel size of 1268 m), the branching ratio represents the number of links per 1.27 river km. Clearly, these are incomparable because units are different. I have clarified this point (5th paragragh in the revised ms). (3) The reanalysis revealed the following statement in the original article is also invalid "...*if different river networks spanning different catchment areas (say, in km*$^2$*) are compared, all of them extracted from the same DEM (same* $l$ *and same* $A_T$ *in km*$^2$*), then the larger river network will appear more branching (i.e., have larger* $p_r$*)...*" In the re-analysis with a constant pixel size and $A_T$, I did not find any correlation between the two. I have clarified this point in the revised ms (7th paragraph).
 
@@ -40,9 +40,9 @@ Note that I added a quantitative analysis for the power law scaling of $p_r$ acc
 
 **Conclusion.** I do agree that OCNs should be more widely used in ecological research; I have no doubt that OCNs have a WAY better capacity to describe realized river networks than other (too) simple metrics like BBTs and RBNs. If my text "...only a few parameters..." looked like indirectly criticizing the use of OCNs, it is not my intention -- I have corrected this as "...has two parameters..." However, Carroro & Altermatt 2022 does not sound scientifically, and the author's reply did not alleviate my concerns. Rather, they revealed deeper problems in their original article. In particular, I am seriously afraid that this article may facilitate the misunderstanding/misuse of the term "**scale-invariance,**" which is mathematically defined, not a verbal concept. **Scale invariance** is a deep and wide research topic, which plays critical roles in mathematics, physics, ecology, and even social network science, to name just a few. Therefore, this issue is not trivial at all, and I repectfully disagree with reviewer 1's statement:
 
-> *...I believe the debate is best categorized as \"technical matters\" or \"inconclusive\" and therefore may not be of interest to a non-specialist readership.*
+> *...I believe the debate is best categorized as "technical matters" or "inconclusive" and therefore may not be of interest to a non-specialist readership.*
 
-By letting Carraro & Altermatt 2022 out as "peer-reviewed article" in its current form, it has far-reaching *undesired* consequences for the scientific community in this research field (especially for undergrad and graduate students who are still in the process of learning what "scale-invariance" means). I hope the editorial office will take my concerns seriously and will make a wise decision.
+By letting Carraro & Altermatt 2022 out as "peer-reviewed article" in its current form, it has far-reaching *undesired* educational consequences for those (especially for undergrad and graduate students) who are learning what "scale-invariance" means. I hope the editorial office will take my concerns seriously and will make a wise decision.
 
 \newpage
 
@@ -69,11 +69,25 @@ $$
 
 where $c$ and $z$ are both constants. Under the author's definition of scale-invariance, $g(x)$ and $h(x)$ are both considered as scale-invariant because the relationship between the dependent variable ($y$ or $y^*$) and scale $x$ does change across scales. However, while $g(x)$ suffices $g(\lambda x) = \lambda^z g(x)$, $h(x)$ does not ($h(\lambda x) \ne \lambda^z h(x)$). From this, it is mathematically proved that the author's definition is incorrect.
 
+**Unique characterization of fractal rivers.** The authors argued in their reply:
+
+> *More importantly, the interpretation of the definition of scale invariance is immaterial for the limitation we highlighted in our study: given a river network, it is not possible to univocally characterize its* $p_r$*, because it depends on the scale at which the network is observed (that is, the depth/width/discharge above which a river is defined, subsumed by* $A_T$ *in our study) (reply, 34 -- 37)*
+
+First, if the definition of scale-invariance is immaterial, then why does the authors write this article to begin with? The point of the author's critique on branching probability was "branching probability cannot characterize river fractals because it is scale dependent." This statement undermines the value of their own work.
+
+Second, the critique "*it is not possible to univocally characterize its* $p_r$..." is pointless. Self-similar structure of scale-invariant objects must be properly rescaled before comparison (unless scaling exponent $z$ is constant across rivers). Once properly rescaled (non-dimensionalization), the self-similar structure unique to each river will emerge. This has been done in previous studies in the field of river geoscience [@rinaldoEvolutionSelectionRiver2014; @rodriguez-iturbeFractalRiverBasins2001], including my past work on branching probability [@teruiMetapopulationStabilityBranching2018]. The authors must review textbooks on the topic of scale-invariance more carefully. Please see the revised letter for details (paragraph starting with "It is worthwhile...").
+
+**The word "alleged."** In the original article and their reply, the authors repeatedly used the word "alleged" when criticizing the *apparent* misuse of branching probability in the past research. As I revealed above, nothing was "alleged." This is simply caused by the misdefinition/misuse of the term "scale-invariance" made by the authors. Such expression is beyond disrespectful.
+
 **Minor points.** Reviewer 2 commented that $A_T$ is inappropriate to prove scale-invariance, as $A_T$ is a lens to view a river network. However, I do not think this is correct. First, $A_T$ has been used for decades to characterize the scale-invariance of river networks (see Rodriquez-Iturbe and Rinaldo [@rodriguez-iturbeFractalRiverBasins2001] for their extensive review on this topic). Second, in the original article [@carraroOptimalChannelNetworks2022], the authors referred specifically to $A_T$ as an observation scale. Below is an example of such author's statements:
 
 > *A second **scale** is then needed to distinguish the portion of the drainage network effectively belonging to the channel network. The simplest but still widely used method defines channels as those pixels whose drainage area exceeds a threshold value* $A_T$*.*
 
-**The word "alleged."** In the original article and their reply, the authors repeatedly used the word "alleged" when criticizing the *apparent* misuse of branching probability in the past research. As I revealed above, nothing was "alleged." This is simply caused by the misdefinition/misuse of the term "scale-invariance" made by the authors. Such expression is beyond disrespectful.
+Reviewer 1 noted:
+
+> *...the contradiction seems peculiar, but potentially arises from ambiguous definitions (scale invariance vs scale dependence). Importantly, I was not entirely sure how this issue would change the results reported in the original submission.*
+
+Scale-invariance is mathematically defined, and the author's definition was incorrect, as I showed above. Many of the critiques the authors presented rest on *their* definition of scale-invariance. Therefore, their article is fundamentally undermined.
 
 ## The lack of characteristic scale
 
@@ -112,13 +126,27 @@ Probability is not self-evidently dimensionless. For example, **a probability of
 
 Pixel size $l$ is a unit, not a dimension. If it is a dimension, then Toss has 103 dimensions and Stikine has 1268 dimensions? How could it be even possible?
 
+> *We used the pixel size as the extent of network node, because this is the smallest dimension at which one can measure the features of a river network.* (reply, L40 --42)
+
+Again, pixel size is not a dimension, a unit.
+
 > *If one extrapolated the trend lines of Fig. 1b and drew a vertical line at, say,* $A_T = 1~\text{km}^2$*, one would indeed observe a higher* $A_T$ *value for the larger catchments (e.g., Klamath, Owyhee) than the smaller ones (e.g., Kleine Emme, Chisone)* (reply, L53 -- 55)
 
-I re-analyzed the entire dataset with a constant pixel size and $A_T$. I found no correlation between $p_r$ and $A$. As I clarified in the revised letter, this statement emerged from the incosistent units used to estimate $p_r$. In the original article, they used larger pixel sizes for larger watersheds. For example, in Toss (smallest pixel size of 103 m), the branching ratio represents the number of links per 0.1 river km. Meanwhile, in Stikine (largest pixel size of 1268 m), the branching ratio represents the number of links per 1.27 river km. Therefore, this statement is a statistical artifact of inconsistent units. See the revised letter for details.
+I re-analyzed the entire dataset with a constant pixel size and $A_T$. I found no correlation between $p_r$ and $A$. As I clarified in the revised letter, this statement emerged from the inconsistent units used to estimate $p_r$. Therefore, this statement is a statistical artifact of inconsistent units. See the revised letter for details.
 
 > *...However, this comparison is improper, as* $A_T = 1~\text{km}^2$ *may be a very fine scale to extract river networks in large (in terms of km2) basins, but a very coarse scale for smaller catchments. A fair comparison with* $A_T$ *expressed in km*$^2$ *would require the use of basins of similar areas in km*$^2$ *and extracted from DEMs with same (or similar) pixel size.*
 
 In my re-analysis in the revised letter, I repeated the analysis for a subset of watersheds with $> 5000~\text{km}^2$, which are large enough to cover the entire range of observation scales used in my analysis ($A_T = 1,...,1000$ km$^2$). Again, I did not find any statistical evidence that supports the author's claim.
+
+**Additional comment on the author's appeal.** I would like to mention the author's appeal as it is pertinent to the argument of dimension. In the second round of review, I wrote:
+
+> *...the "rescaled" non-dimensional link length* $L'=\frac{L}{A_T^z}$ *(random variable) suffices...*
+
+In response to this comment, the authors wrote:
+
+> *R7 This is simply not correct. It is false that* $L$ *non-dimensional. If* $L$ *is measured in km and* $A_T$ *in km*$^2$*, then* $L$ *is expressed in km*$^{1−2z}$*.*
+
+The author's response is correct **ONLY IF** the observed object is a simple geometry, such as a straight line. However, rivers are not a simple geometry -- it's fractal, and therefore it has a non-discrete dimension greater than one (fill more planar space than a simple straight line). To understand this argument, one must recognize that, by writing $p_r = c_wA_T^z$, we equate the dimension in both sides of the equation. From this equation, the dimension of $p_r$ is "estimated" to be $2z$ since the scaling exponent $z$ applies to the unit of $A_T$ as $p_r = c_wA_T^z$ [km$^{2z}$]. Therefore, to properly non-dimensionalize branching ratio, we must non-dimensionalize $p_r$ as $\bar{p}_r = \frac{p_r}{A^z} = c_w$ [-]. This technique of dimensional analysis has been widely used when comparing or non-dimensionalizing the self-similar structure of scale-invariant objects (see Figure 1 in Rinaldo et al. @rinaldoEvolutionSelectionRiver2014 and equation (2.2) in Rodriguez-Iturbe and Rinaldo @rodriguez-iturbeFractalRiverBasins2001 for examples). In fact, past empirical studies used $A_T = 1~\text{km}^2$ such that the estimated dimensional $p_r$ approximates the rescaled $\bar{p}_r$ ($p_r = \bar{p}_r \approx c_w$ for $A_T = 1$ in a given unit, regardless of the value of $z$) [@teruiMetapopulationStabilityBranching2018; @teruiEmergentDualScaling2021]. As such, the author's response lacks mathematical rigor.
 
 ## Metapopulation simulations
 
@@ -126,12 +154,12 @@ In the original article, the authors emphasized that using $l$ (pixel size) as a
 
 > *Note also that using the ecological definition of* $l$*...to discretize a real river network into* $N$ *nodes...is problematic.*
 
-However this is exactly what the authors did in their metapopulation simulations (see above). Nodes in their metapopulations have length $l$ to discretize the total river length into $N$ nodes. What's the point?
+However this is exactly what the authors did in their metapopulation simulations. Nodes in their metapopulations have length $l$ to discretize the total river length into $N$ nodes. What's the point?
 
 Also, the following statement in their reply revealed a larger problem in their metapopulation simulations.
 
-> *Our analysis was designed to compare networks with similar numbers of pixels, the only meaningful way to perform a fair comparison, as the number of pixels (and hence, of network nodes) exerts a major control on the metapopulation metrics.* (reply, L78 -- 81)
+> *Our analysis was designed to compare networks with **similar numbers of pixels**, the only meaningful way to perform a fair comparison, as the number of pixels (and hence, of network nodes) exerts a major control on the metapopulation metrics.* (reply, L78 -- 81)
 
-This is THE problem of the author's analysis. Even though their real river examples have HUGE variation in watershed area (`r op(min(df_m$A_km2), 0)` -- `r op(max(df_m$A_km2), 0)` km$^2$), and thus network size, they made the number of nodes (= populations) almost constant across rivers **by changing the population scale** $l$. Basically, this assumes metapopulations of different species among watersheds. Would you compare metapopulation CVs and capacities between fish and insects? How could it be ecologically interpretable?
+This is THE problem of the author's analysis. Even though their real river examples have HUGE variation in watershed area (`r op(min(df_m$A_km2), 0)` -- `r op(max(df_m$A_km2), 0)` km$^2$), and thus network size, they made the number of nodes (= populations) almost constant across rivers **by changing the population scale** $l$. Basically, this assumes metapopulations of different species among watersheds. Would you compare metapopulation CVs and capacities between fish and insects? How could it be ecologically interpretable? Further, this is obviously not the only meaningful way of comparison. Even if the population numbers differ among watersheds, you can compare values by pairing watersheds. Deviation from a 1:1 line (or correlation) can be used. This statement is not justifiable.
 
 # **References**
