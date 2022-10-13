@@ -106,7 +106,7 @@ A previous publication [@giomettoScalingBodySize2013], in which Dr. Altermatt is
 While not exactly the same, this essentially says the lack of peaks (i.e., characteristic scale) is a necessary condition for scaling ($\Leftrightarrow$ scale invariance). Therefore, the authors themselves support my claim that $p_r$ is scale-invariant. Since the authors seem not to know the relationship between scale-invariance, scaling, and the lack of characteristic scale, I list the ties below.
 
 | Object type     | Sufficient condition | Necessary condition                   |
-|------------------|-----------------------|-------------------------------|
+|-----------------|----------------------|---------------------------------------|
 | Scale invariant | Scaling              | The lack of characteristic scale      |
 | Scale dependent | Non-scaling          | The existence of characteristic scale |
 
