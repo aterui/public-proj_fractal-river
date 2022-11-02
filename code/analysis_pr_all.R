@@ -159,10 +159,10 @@ g_all <- g_pr + g_prp +
   plot_layout(guides = "collect") &
   theme(legend.position = "bottom")
 
-ggsave(g_all,
+ggsave(g_pr,
        filename = here::here("output/figure_pr_all.pdf"),
-       height = 4.5,
-       width = 9)
+       height = 6,
+       width = 8)
 
 ggsave(g_pr_facet,
        filename = here::here("output/figure_pr_facet.pdf"),

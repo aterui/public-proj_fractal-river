@@ -1,0 +1,150 @@
+---
+title: "Reply to Manuscript ID: COMMSENV-22-0565: Mathematical characterization of fractal river networks"
+output:
+  bookdown::pdf_document2:
+    latex_engine: xelatex
+    toc: false
+fontsize: 11pt
+mainfont: "Times New Roman"
+knit: (function(inputFile, encoding) {
+        rmarkdown::render(inputFile,
+                          encoding = encoding, 
+                          output_dir = "document_output")
+      })
+date: "`r Sys.Date()`"
+bibliography: references.bib
+csl: https://www.zotero.org/styles/nature
+---
+
+Dear Editor,
+
+I am writing this letter to resubmit my manuscript "Mathematical characterization of fractal river networks." First of all, I appreciate the time you have taken for this manuscript. I agree that the revised manuscript was considerably long and included unimportant information for the broader audience. In light of this fact, I greatly reduced the amount of text, focusing on the most serious flaw in Carraro and Altermatt 2022.
+
+I detailed my response below in two sections: "summary" and "response to author's reply/reviewers." I included "response to reviewers" explicitly because you were concerned about not addressing one of the comments raised by reviewer 1. If this component is not supposed to be included in this letter, I apologize in advance -- when I submitted the revised manuscript, it was unclear to me how to respond to their comments because I thought that the point-by-point response to reviewers is not allowed given the following guidance I received "*Your revised manuscript should be accompanied by **a short letter explaining the changes you have made** in response to the comments from both the criticized authors and the referees.*"
+
+I understand that the manuscript for "Matters Arising" must be concise and should challenge the major conclusion in the paper. I hope the revised manuscript is now suitable for publication in your journal.
+
+Sincerely,
+
+Akira Terui
+
+# Summary
+
+## Clarification of the problem -- inconsistent units
+
+In light of the Editor's comment, I greatly reduced the content and focused on the most serious issue -- Carraro and Altermatt 2022 concluded that "branching ratio is a scale-dependent quantity because the value and its rank change depending on spatial resolutions at which river networks are extracted." This conclusion is unsupported because of the improper use of units.
+
+In the original article, the authors argued the value of the branching ratio ($p_r$) and its rank depend on spatial resolutions at which river networks are extracted. However, the authors used different units for different **"real"** rivers when measuring $p_r$. **Since units are different, the values of** $p_r$ **are not comparable.** Indeed, when I used consistent units across 50 real rivers, the author's conclusion is not supported (see the revised letter).
+
+In terms of the comment from reviewer 1, they wrote "*I agree that using pixels to measure length and area is potentially confusing but because **OCN are constructed on a lattice (i.e. a pixel represents a length and surface area) seems acceptable.**"* However, this is NOT the point I am questioning. In my manuscript, I clearly wrote that there is a problem in their analysis of real rivers, **not simulated OCNs**. The analysis of simulated OCNs has no problem because the authors used a consistent unit (i.e., the same pixel size). However, the authors used different units for measuring $p_r$ for different real rivers, thus they are not comparable. No one would say 10 cm is larger than 1m because units are different, for example.
+
+The authors wrote in their reply "*The probability distribution of drainage areas is invariant under coarse graining, hence it is absolutely correct to compare DEMs constituted by pixels of different sizes, which we did in our analysis.*" It is ok to compare "slopes" of the relationship between $p_r$ and $A_T$ among rivers (the form of a PDF), but the value of $p_r$ *per se* is not comparable when units are different (as pointed out by reviewer 3). In the original article, the authors wrote "*by extracting different river networks at various scales (i.e., various* $A_T$ val*ues) and assessing the rivers' rank in terms of* $p_r$*, one observes that rivers that look more "branching" (i.e., have higher* $p_r$*) than others for a given* $A_T$ *value can become less "branching" for a different* $A_T$ *value (Fig. 3).*" This statement is based on the comparison of $p_r$ values *per se*, not the slopes nor PDFs. Therefore, they compared values with different units.
+
+## Clarification of the problem -- scale invariance
+
+I carefully read your comment on the issue of scale invariance:
+
+*Specifically, having carefully considered the reviewers' comments, we do not feel that your discussion of scale invariance calls into question the main conclusions of the original article by Carraro et al. Instead, your criticisms of the paper are of a detailed and more technical nature and will be of specialist interest; we are unconvinced that this aspect will be of interest and value to our broad audience.*
+
+I appreciate your careful reading. However, I respectfully but strongly disagree with this decision. Please allow me to use an analogy to make a case. One performed an experiment in which two plant individuals are raised in a single pot, and we observed reduced growth of the plant in comparison to when they are raised alone. Ecologists would interpret this result as a sign of "competition", and no one would interpret it as a sign of "mutualism" (an opposite and incorrect interpretation of the result). The misuse of "scale-invariance" made by Carraro & Altermatt is analogous to interpreting this experimental result as a sign of "mutualism."
+
+When we find a variable $y$ follows a power-law of scale $x$, then we interpret it as a sign of "scale invariance", not "scale-dependence" (the two terms are opposite just like "competition" and "mutualism"). Since the authors find that $p_r$ follows a power-law of $A_T$ (scale), the conclusion should be "*branching ratio is a scale-invariant feature that reflects rivers' fractal character"* instead of *"(branching probability) is a scale-dependent quantity that does not reflect any recognized metric of rivers' fractal character*..." (Abstract). When I looked at my reference library, all the scientific papers I've read so far on this topic (\> 300 articles) interpreted a power law in this manner.
+
+The search term "scale invariance" results in \>1,070,000 articles in google scholar. If we use the author's incorrect definition of the term "scale invariance", it invalidates the entire body of the literature on scale invariance because this research field builds upon the definition/use of scale invariance that I presented above (what we have been calling "scale invariant" becomes "scale dependent"). I do not believe this is a technical or specialist interest. This is a deep, fundamental problem. Therefore, I strongly disagree with your decision on this matter.
+
+# Response to author's reply/reviewers.
+
+The following content includes responses to important points raised by the author and reviewers. Some of them are repetitive, but I included this to avoid giving the impression that I'm not addressing the concerns raised by the reviewers.
+
+**Definition of scale invariance.** In the author's reply, the authors provided *their* definition of scale-invariance. The authors wrote:
+
+> *Notably, scale invariance is defined as a property of a function* $y=f(x)$ *(that is, the relationship between* $y$ *and* $x$*), not of the dependent variable* $y$ *itself* (reply, L24 -- 26)
+
+As reviewer 3 pointed, this is incorrect. Two clear reasons.
+
+First, if $y=f(x)$, and the function $f(x)$ is scale-invariant, then $y$ is said to be scale-invariant because we write $y$ EQUALS $f(x)$.
+
+Second, their definition is inconsistent with the formal definition provided by Proekt et al. [@proektScaleInvarianceDynamics2012], which the authors quoted: i.e., a function $f(x)$ is said to be scale-invariant if it suffices $f(\lambda x) = \lambda^z f(x)$ (you can find this formal definition even in Wikipedia <https://en.wikipedia.org/wiki/Scale_invariance>). To explain this, let me write two functions, $g(x)$ and $h(x)$, as:
+
+$$
+\begin{aligned}
+y &= g(x) = cx^z \\
+y^* &= h(x) = c\exp(zx) 
+\end{aligned}
+$$
+
+where $c$ and $z$ are both constants. Under the author's definition of scale-invariance, $g(x)$ and $h(x)$ are both considered as scale-invariant because the relationship between the dependent variable ($y$ or $y^*$) and scale $x$ does change across scales. However, while $g(x)$ suffices $g(\lambda x) = \lambda^z g(x)$, $h(x)$ does not ($h(\lambda x) \ne \lambda^z h(x)$). From this, it is mathematically proved that the author's definition is incorrect.
+
+## Point-by-point response to reviewers
+
+**Reviewer 1:**
+
+Below are concerns raised by reviewer 1, followed by my response:
+
+> *Indeed, the contradiction seems peculiar, but potentially arises from ambiguous definitions (scale invariance vs scale dependence).*
+
+Thank you for your insights. However, scale invariance is mathematically defined, as presented above. I have read \> 300 articles on scale invariance (or scale free) so far, and none of these used the term scale invariance in a way the authors did. Therefore, there is no ambiguity in this regard.
+
+> *Importantly, I was not entirely sure how this issue would change the results reported in the original submission. Moving forward, resolving these differences could advance our understanding of scaling but discussing them is better suited for a specialized journal.*
+
+The search term "scale invariance" results in \>1,070,000 articles in google scholar. If we use the author's incorrect definition of the term "scale invariance", it invalidates the entire body of the literature on scale invariance because this research field builds upon the definition/use of scale invariance that I presented above (what we have been calling "scale invariant" becomes "scale dependent"). I do not believe this is a technical or specialist interest. This is a deep, fundamental problem. Therefore, I strongly disagree with this comment.
+
+> *I agree that using pixels to measure length and area is potentially confusing but because **OCN are constructed on a lattice (i.e. a pixel represents a length and surface area) seems acceptable.*** It is surprising that Terui found changing units revealed different patterns, but Carraro and Altermatt argue that these new patterns do not alter their conclusions from the original article. In my opinion, this issue could be important but whether it is, remains unresolved.
+
+Thank you, but my criticism is on their analysis of **real rivers, not that of simulated OCNs.** I clearly wrote this in the manuscript. Since units are different among real rivers, the value of $p_r$ is not comparable, as pointed out by reviewer 3. **Indeed, when I used a constant pixel size across 50 real rivers, the author's conclusion is no longer valid.** Please see also the report from reviewer 3 on this issue.
+
+**Reviewer 2:**
+
+Below is concerns raised by reviewer 2, followed by my response
+
+> *While it has a tangential value in that they discuss scaling properties, it is irrelevant to the overall conclusions of the paper.*
+
+I appreciate reviewer's careful reading. However, I strongly disagree with this statement. Please allow me to use an analogy to make a case. One performed an experiment in which two plant individuals are raised in a single pot, and we observed reduced growth of the plant in comparison to when they are raised alone. Ecologists would interpret this result as a sign of "competition", and no one would interpret it as a sign of "mutualism" (an opposite and incorrect interpretation of the result). The misuse of "scale-invariance" made by Carraro & Altermatt is analogous to interpreting this experimental result as a sign of "mutualism."
+
+When we find a variable $y$ follows a power-law of scale $x$, then we interpret it as a sign of "scale invariance", not "scale-dependence" (the two terms are opposite just like "competition" and "mutualism"). Since the authors find that $p_r$ follows a power-law of $A_T$ (scale), the conclusion should be "*branching ratio is a scale-invariant feature that reflects rivers' fractal character"* instead of *"(branching probability) is a scale-dependent quantity that does not reflect any recognized metric of rivers' fractal character*..." (Abstract). When I looked at my reference library, all the scientific papers I've read so far on this topic (\> 300 articles) interpreted a power law in this manner.
+
+Therefore, the conclusion derived from their analysis must have been a complete opposite. I don't believe this is "*it is irrelevant to the overall conclusions of the paper.*"
+
+> *the claim that branching probability is scale invariant based on Figure 3a I believe is incorrect. To test for scale invariance, one usually plots values of some variable versus the scale used to define the variable, using logarithmic scales on both axis' and looking at the slope of the line. Figure 3a is is simply showing that the branching ratio changes with the threshold area, or lens size one is viewing the landscape, which is the point Carraro and Altermatt are trying to make. I would think that testing for scale invariance one would need to plot the branching ratio (𝑝𝑟) against pixel size, but again that was not part of what Carraro and Altermatt were trying to do.*
+
+Thank you for this comment. However, this comment is incorrect. First, $A_T$ has been used for decades to characterize the scale-invariance of river networks (see Rodriquez-Iturbe and Rinaldo [@rodriguez-iturbeFractalRiverBasins2001] for their extensive review on this topic). Second, in the original article [@carraroOptimalChannelNetworks2022], the authors referred specifically to $A_T$ as an observation scale. Below is an example of such author's statements: "*A second **scale** is then needed to distinguish the portion of the drainage network effectively belonging to the channel network. The simplest but still widely used method defines channels as those pixels whose drainage area exceeds a threshold value* $A_T$*."*
+
+> *I will add that in the original article [1] and in Dr. Terui's response [2]I found it confusing that there is a branching probability, 𝑝, and a branching ratio , 𝑝𝑟, but in many instances the term branching probability is used as a term, when I believe they are referring to 𝑝𝑟, the branching ratio. I don't think this is clear in the original article, but I could be confused by the writing style.*
+
+I used branching ratio throughout the manuscript.
+
+> *Most importantly Carraro and Altermatt do show through examples in lines 65 to 75 that overall "our conclusion that different rivers rank differently in terms of 𝑝𝑟 when extracted at different scales remains unaltered" [1]. This is important because the overall study conclusions would not seem to change in either case.*
+
+When I reanalyzed their data with a constant pixel size, **I did not find the support for the author's claim** in their reply "*However, values on the y-axis are unchanged, hence our conclusion that different rivers rank differently in terms of* $p_r$ *when extracted at different scales remains unaltered. For instance, in Fig. 1b, river Magra has the highest* $p_r$ *value when extracted at the coarsest resolution, but does not rank among the most "branching" rivers when extracted at the other two resolutions.*" Therefore, the author's claim is not substantiated. Please also note that the raw $p_r$ -- especially those measured with larger $A_T$ values -- are subject to statistical uncertainty. $p_r$ is the inverse of the mean link length (the number of links divided by the total river length), so the number links represents the sample size for estimating $p_r$ when comparing the values, one must account for this uncertainty, as I did in the revised manuscript.
+
+**Reviewer 3:**
+
+Overall, I strongly concur with the comments from reviewer 3.
+
+> *Line 29‐33: "If* $p_r \sim A_T$*, one can say that the relationship between pr and AT is scale‐invariant,is scale‐invariant per se. To make an ecologically relevant example, if this were not the case, one would conclude that the number of species is scale‐invariant, because species‐area relationships are power laws. Yet, the number of species does depend on the scale (habitat area) at which it is observed; it is the relationship between area and species number that is scale‐invariant."*
+>
+> *The above statement by Carrara and Altermatt, (reply, in review) is not correct as* $p_r \sim A_T^z$ *indeed implies scale‐invariance since* $p_r \sim A_T^z$ *shows the power law relationship between the function (*$p_r$*) and the scale (*$A_T$*). In fact, in my opinion, the relationship does imply that under certain normalization (scaling) number of species should scale with area, i.e., there is no characteristic scale in the area.*
+
+This is exactly what I am claiming in my manuscript and is the comment provided to the authors during the peer review process. Indeed, in the species area relationship, the dependent variable $y$ (species richness) is said to be scale-invariant, and this is clearly stated in Hubbel's book of the Neutral Theory [@hubbellUnifiedNeutralTheory2001], for example.
+
+> *The argument in lines 34‐45 (Carrara and Altermatt, reply, in review) is not clear and does not seem correct. In fact, if the function (here branching probability) scales as power‐law with scales (here threshold area), it implies that different species (with different local population ranges) inhabiting the same real river network would be independent of scale, i.e. if measured at different scales (here areas) would show similar probabilities if properly scaled with the observed scaling factor from the relationship.*
+>
+> *I wonder if the above observation is the result of improper normalizing, i.e. if the* $p_r$ *is computed as the number of links divided by the total number of pixel times the size of the pixel, they would observe different results consistent with what one would expect from scale invariance.*
+
+I confirmed that the reviewer's concern on the author's original analysis. When I reanalyzed their data with a constant pixel size, their major conclusion is no longer supported.
+
+> *Line 58‐60: "The probability distribution of drainage areas is invariant under coarse graining3, hence it is absolutely correct to compare DEMs constituted by pixels of different sizes, which we did in our analysis."*
+>
+> *I think there is a confusion between pixel/pixel‐size and catchment area (or threshold area). Catchment area is a physical quantity (which does not change for the current analysis) whereas pixel size is observation scale. This is true that pdf of drainage areas exhibits scale invariance thus it is ok to compare pdfs/properties at different scales or pixel sizes, if properly scaled or normalized; however, comparing with a different basin one cannot just use pixels (or pixel number) unless the physical size (units) of those pixels are same. Otherwise, it may create artifact in results as pointed out by Terui (in review).*
+>
+> *...in fact represents the inverse of average link length expressed in pixel units and therefore comparing values where pixel size differs may result in artifacts and misleading conclusions.*
+
+I agree. This is what I am seriously concerned. When I reanalyzed their data with a constant pixel size, their major conclusion is no longer supported.
+
+> *There were also some errors/typos I noticed in Terui (in Review). For example, page 2, line* $A \sim l^{-2}$*. This is incorrect as area A should scale as length square, i.e.* $A \sim l^2$
+
+Thank you for the careful reading. During the revision, this sentence has been deleted. I appreciate this input though.
+
+> *While reading Carrara and Altermatt, 2022 original paper, I noticed there were some errors/unclear text at some other places as well. Below I will point out a couple as examples..."In contrast, we note that, if different river networks spanning different catchment areas (say, in km2) are compared, all of them extracted from the same DEM (same l and same AT in km2), then the larger river network will appear more branching (i.e., have larger pr)."*
+
+Thank you, I checked the validity of this author's statement in my re-analysis. No correlation was found between watershed area and $p_r$ when I used a constant pixel size. I clarified in the revised manuscript.
