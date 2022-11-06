@@ -48,4 +48,4 @@ g_pra <- df_pr %>%
 
 ggsave(g_pra,
        filename = here::here("output/figure_pra.pdf"),
-       height = 4, width = 5)
+       height = 3, width = 4)
