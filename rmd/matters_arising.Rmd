@@ -1,11 +1,10 @@
 ---
 title: "Mathematical characterization of fractal river networks"
 output:
-  # bookdown::pdf_document2:
-  #  latex_engine: xelatex
-  #  toc: false
-  #  number_sections: false
-  word_document
+  bookdown::pdf_document2:
+   latex_engine: xelatex
+   toc: false
+   number_sections: false
 fontsize: 11pt
 mainfont: "Times New Roman"
 knit: (function(inputFile, encoding) {
@@ -33,15 +32,17 @@ Email: hanabi0111\@gmail.com
 
 # Maintext
 
-Rivers form complex branching networks, and the ecological implication of river network complexity has gained great interest over the past few decades [@grantLivingBranchesPopulation2007; @carraraDendriticConnectivityControls2012; @mariMetapopulationPersistenceSpecies2014]. To this end, there have been concerted efforts to construct virtual river networks to provide theoretical insights into how river network structure controls riverine ecological dynamics. Carraro and Altermatt @carraroOptimalChannelNetworks2022 compared the scaling properties of virtual river networks produced by three different simulation methods -- balanced binary trees (BBTs) [@yeakelSynchronisationStabilityRiver2014], random branching networks (RBNs) [@teruiMetapopulationStabilityBranching2018; @teruiEmergentDualScaling2021], and optimal channel networks (OCNs) [@carraroGenerationApplicationRiver2020]. The first two methods have two parameters that control river network size (order or the number of nodes) and complexity (branching ratio). In the meantime, OCNs are spanning trees that suffice a local minimum of a function describing total energy expenditure across the network. Carraro and Altermatt @carraroOptimalChannelNetworks2022 performed extensive analysis and concluded that branching ratio is a scale-dependent quantity because the value and its rank change depending on spatial resolutions at which river networks are extracted (expressed as the threshold catchment area $A_T$ that initiates channels or pixel size $l$). However, the supporting ground for this conclusion is seriously flawed due to the improper use of scale invariance and units.
+Rivers form complex branching networks with fractal characteristics -- "there are basins within basins within basins, all of them looking alike [ref]." The ecological implication of river network complexity has gained great interest over the past few decades [@grantLivingBranchesPopulation2007; @carraraDendriticConnectivityControls2012; @mariMetapopulationPersistenceSpecies2014], and there have been concerted efforts to investigate the role of river network structure in controlling riverine ecological dynamics. The quantification of river network complexity is crucial in this research area, and some researchers used a metric of "branching probability," i.e., the probability of observing a joining tributary per unit river distance. It has been shown that this measure characterizes the fractal nature of river networks because it exhibits the sign of scale invariance (ref). Conversely, a recent article by Carraro and Altermatt @carraroOptimalChannelNetworks2022 concluded that branching probability is a "scale-dependent" quantity. While their analysis is valuable and deserves further attention, I would like to communicate my concern that the original conclusion in Carraro and Altermatt @carraroOptimalChannelNetworks2022 is simply the misuse of the term "scale-invariance"; indeed, their data and analysis support that branching probability is scale invariant. To resolve this widespread confusion about the term "scale invariance," I describe in this article that (1) the formal definition of scale invariance, and that (2) the original data in Carraro and Altermatt @carraroOptimalChannelNetworks2022 suggest that branching probability suffices this definition.
 
-First, the term "scale invariance" was falsely used in their article. To explain this, let me consider an object $y$ whose structural property is assessed under observation scale $x$. For example, Mandelbrot @mandelbrotHowLongCoast1967 studied the length of a coastline as multiples of a ruler with a unit length $x$ (the "observation scale"). In this practice, the observed object is expressed as a function of scale $x$ ($y = f(x)$), and the function $f(x)$ is said to be scale invariant if it suffices the following equation [@rodriguez-iturbeFractalRiverBasins2001; @proektScaleInvarianceDynamics2012]:
+# Premise: the formal definition of scale invariance
+
+The term "scale invariance" is indeed a difficult concept and needs a plain clarification. To explain this concept clearly, let me consider an object $y$ whose physical quantity (e.g., length) is measured with a reference "scale." For example, Mandelbrot @mandelbrotHowLongCoast1967 studied the length of a coastline as multiples of a ruler with a unit length $x$ (the "observation scale"). In this practice, the realized length $y$ is expressed as a function of scale $x$ ($y = f(x)$) as $y$ changes unavoidably as $x$ changes; a shorter ruler can capture the finer structure of the coastline that is overlooked with a longer ruler. The term "scale invariance" refers to a property of this function $f(x)$. Specifically, the function $f(x)$ is said to be scale invariant if it suffices the following equation [@rodriguez-iturbeFractalRiverBasins2001; @proektScaleInvarianceDynamics2012]:
 
 $$
 f(\lambda x) = \lambda^z f(x)
 $$
 
-where $\lambda$ is an arbitrary constant and $z$ is the scaling exponent. The above equation is interpreted as the proof of "scale invariance" because the multiplicative extension/shrink of observation scale $x$ by factor $\lambda$ results in the same shape of the original object $y$ but with a *different scale* [@proektScaleInvarianceDynamics2012] (i.e., the structural property is retained).
+where $\lambda$ is an arbitrary constant and $z$ is the scaling exponent. The above equation is interpreted as the sign of scale invariance because the multiplicative extension/shrink of scale $x$ by factor $\lambda$ results in the same shape of the original object $y$ but with a *different scale* [@proektScaleInvarianceDynamics2012] (i.e., the structural property is retained).
 
 The power-law function is the most famous example that suffices this definition of scale invariance [@rodriguez-iturbeFractalRiverBasins2001; @brownFractalNatureNature2002]:
 
@@ -54,6 +55,10 @@ where $c$ is the scaling constant. The scale invariance can be easily proved by 
 $$
 y'=f(\lambda x)=c\lambda^zx^z = \lambda^z f(x) = \lambda^z y
 $$
+
+
+
+
 
 Carraro and Altermatt @carraroOptimalChannelNetworks2022 provided evidence that branching ratio $p_r$ follows a power law along the axes of observation scale $A_T$ and pixel size $l$ (i.e., length on a side) using OCNs (Equation 1 in the original article). Also, the authors visually showed that the relationship between $p_r$ and $A_T$ follows a power-law using the data from 50 real river networks (Figure 3a in the original article). Despite this, the authors claimed that "*Here we show that an alleged property of such random networks (branching probability) is a scale-dependent quantity that does not reflect any recognized metric of rivers' fractal character*..." (Abstract) This interpretation is the opposite as it has been defined in the literature of scale-invariance [@rinaldoEvolutionSelectionRiver2014; @rodriguez-iturbeFractalRiverBasins2001; @brownFractalNatureNature2002; @proektScaleInvarianceDynamics2012], including the author's previous publication [@giomettoScalingBodySize2013]. Instead, the conclusion derived from their analysis should have been "*branching ratio is a scale invariant feature that reflects rivers' fractal character."*
 
