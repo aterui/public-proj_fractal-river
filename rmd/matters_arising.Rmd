@@ -32,64 +32,72 @@ Email: hanabi0111\@gmail.com
 
 # Maintext
 
-Rivers form complex branching networks with fractal characteristics -- "there are basins within basins within basins, all of them looking alike [ref]." The ecological implication of river network complexity has gained great interest over the past few decades [@grantLivingBranchesPopulation2007; @carraraDendriticConnectivityControls2012; @mariMetapopulationPersistenceSpecies2014], and there have been concerted efforts to investigate the role of river network structure in controlling riverine ecological dynamics. The quantification of river network complexity is crucial in this research area, and some researchers used a metric of "branching probability," i.e., the probability of observing a joining tributary per unit river distance. It has been shown that this measure characterizes the fractal nature of river networks because it exhibits the sign of scale invariance (ref). Conversely, a recent article by Carraro and Altermatt @carraroOptimalChannelNetworks2022 concluded that branching probability is a "scale-dependent" quantity. While their analysis is valuable and deserves further attention, I would like to communicate my concern that the original conclusion in Carraro and Altermatt @carraroOptimalChannelNetworks2022 is simply the misuse of the term "scale-invariance"; indeed, their data and analysis support that branching probability is scale invariant. To resolve this widespread confusion about the term "scale invariance," I describe in this article that (1) the formal definition of scale invariance, and that (2) the original data in Carraro and Altermatt @carraroOptimalChannelNetworks2022 suggest that branching probability suffices this definition.
+Rivers form complex branching networks with fractal characteristics -- "there are basins within basins within basins, all of them looking alike [ref]." The ecological implication of fractal structure has gained great interest over the past few decades [@grantLivingBranchesPopulation2007; @carraraDendriticConnectivityControls2012; @mariMetapopulationPersistenceSpecies2014], and there have been concerted efforts to investigate the role of river fractals in controlling metacommunity dynamics. The proper quantification of river network complexity is therefore crucial, and some researchers used a metric of "branching probability," i.e., the probability of observing a joining tributary per unit river distance. It has been shown that this measure reflects the fractal nature of river networks because it exhibits the sign of scale invariance (ref). However, a recent article by Carraro and Altermatt @carraroOptimalChannelNetworks2022 countered this classical observation and concluded that branching probability is "scale-dependent." They seriously criticized past research based on this observation, noting "an alleged property of such random networks (branching probability) is a scale-dependent quantity that does not reflect any recognized metric of rivers’ fractal character..." Here, I would like to communicate my concern that the original conclusion in Carraro and Altermatt @carraroOptimalChannelNetworks2022 is simply a misuse of the term "scale-invariance," which is common in ecological literature; indeed, their data and analysis proved that branching probability is scale invariant. The purpose of this article is to address this widespread confusion about "scale invariance." In what follows, I re-introduce the definition of scale invariance and show that branching probability meets this definition.
 
-# Premise: the formal definition of scale invariance
+# Premise: the definition of scale invariance
 
-The term "scale invariance" is indeed a difficult concept and needs a plain clarification. To explain this concept clearly, let me consider an object $y$ whose physical quantity (e.g., length) is measured with a reference "scale." For example, Mandelbrot @mandelbrotHowLongCoast1967 studied the length of a coastline as multiples of a ruler with a unit length $x$ (the "observation scale"). In this practice, the realized length $y$ is expressed as a function of scale $x$ ($y = f(x)$) as $y$ changes unavoidably as $x$ changes; a shorter ruler can capture the finer structure of the coastline that is overlooked with a longer ruler. The term "scale invariance" refers to a property of this function $f(x)$. Specifically, the function $f(x)$ is said to be scale invariant if it suffices the following equation [@rodriguez-iturbeFractalRiverBasins2001; @proektScaleInvarianceDynamics2012]:
-
-$$
-f(\lambda x) = \lambda^z f(x)
-$$
-
-where $\lambda$ is an arbitrary constant and $z$ is the scaling exponent. The above equation is interpreted as the sign of scale invariance because the multiplicative extension/shrink of scale $x$ by factor $\lambda$ results in the same shape of the original object $y$ but with a *different scale* [@proektScaleInvarianceDynamics2012] (i.e., the structural property is retained).
-
-The power-law function is the most famous example that suffices this definition of scale invariance [@rodriguez-iturbeFractalRiverBasins2001; @brownFractalNatureNature2002]:
-
-$$
-y = f(x) = cx^z
-$$
-
-where $c$ is the scaling constant. The scale invariance can be easily proved by multiplying the scaling factor $\lambda$:
-
-$$
-y'=f(\lambda x)=c\lambda^zx^z = \lambda^z f(x) = \lambda^z y
-$$
-
-
-
-
-
-Carraro and Altermatt @carraroOptimalChannelNetworks2022 provided evidence that branching ratio $p_r$ follows a power law along the axes of observation scale $A_T$ and pixel size $l$ (i.e., length on a side) using OCNs (Equation 1 in the original article). Also, the authors visually showed that the relationship between $p_r$ and $A_T$ follows a power-law using the data from 50 real river networks (Figure 3a in the original article). Despite this, the authors claimed that "*Here we show that an alleged property of such random networks (branching probability) is a scale-dependent quantity that does not reflect any recognized metric of rivers' fractal character*..." (Abstract) This interpretation is the opposite as it has been defined in the literature of scale-invariance [@rinaldoEvolutionSelectionRiver2014; @rodriguez-iturbeFractalRiverBasins2001; @brownFractalNatureNature2002; @proektScaleInvarianceDynamics2012], including the author's previous publication [@giomettoScalingBodySize2013]. Instead, the conclusion derived from their analysis should have been "*branching ratio is a scale invariant feature that reflects rivers' fractal character."*
-
-Second, units are inconsistent in their analysis of real river networks. The authors employed the number of pixels as a unit of measurement in their analysis. However, they used different pixel sizes (length on a side) among watersheds (`r round(min(df_m$l_m))` m to `r round(max(df_m$l_m))` m), meaning that the same number of pixels translates into very different lengths and areas. For example, in Figure 3 in the original article, the observation scale $A_T$ ranges $20 - 500$ pixels. This pixel range translates into `r op(((min(df_m$l_m)^2)*20)/1E+6, 1)` -- `r op(((min(df_m$l_m)^2)*500)/1E+6, 1)` km$^2$ for the `r df_m$name[which.min(df_m$l_m)]` river (with smallest pixel size) and `r op(((max(df_m$l_m)^2)*20)/1E+6, 1)` -- `r op(((max(df_m$l_m)^2)*500)/1E+6, 1)` km$^2$ for the `r df_m$name[which.max(df_m$l_m)]` river (with largest pixel size). Further, the branching ratio $p_r$ is also affected by this variation in pixel size as its unit is [pixel length$^{-1}$]. Once the pixel length is converted to a unit of km, the branching ratio represents the number of links per `r op(min(df_m$l_m)/1E+3, 1)` km in `r df_m$name[which.min(df_m$l_m)]`, whereas it represents the number of links per `r op(max(df_m$l_m)/1E+3, 1)` km in `r df_m$name[which.max(df_m$l_m)]`. Hence, the authors compared values with different units.
-
-To explore the consequences of inconsistent units, I re-analyzed their data with MERIT Hydro [@yamazakiMERITHydroHighresolution2019] that has constant pixel size. I extracted river networks with 20 values of $A_T$ [km$^2$] ($A_T=1,...,1000$ with an equal interval at a $\log_{10}$ scale, but confined to $A_T <$ $A$ for small rivers), at which I estimated branching ratio as $p_r = \frac{N_L}{N}$ [km$^{-1}$]. $p_r$ is the inverse of the mean link length. Thus, its estimation accuracy is affected by the number of links (i.e., the sample size). To statistically substantiate the power-law of $p_r$, one must account for this statistical uncertainty. Therefore, I fitted the following log-linear models with robust regression:
+The concept of "scale invariance" is inherently confusing and is often misunderstood among ecologists. To clarify this concept, let me use the most famous example of a scale-invariant object - the complex structure of coastline [@mandelbrotHowLongCoast1967]. In Mandelbrot's pioneering work, he measured the coastline length $y$ as multiples of a ruler with a unit length $x$ (the "observation scale"). He observed that the length diverged to reach infinity as $x \rightarrow 0$, because finer but similar zig-zag patterns emerged over and over as he used a shorter ruler; that is, there was no specific scale that uniquely characterizes the coastline length (the "lack of characteristic scale"). However, when the coastline length was expressed as a function of scale $x$ ($y = f(x)$), the function obeyed a simple rule that reflects the fractal nature of the observed object: the power-law.
 
 $$
 \begin{aligned}
-\log_{10} p_{r,i} &= \log_{10} c_{w(i)} + z\log_{10} A_{T,i} + \varepsilon_{i} &&\text{(M0)}\\
-\log_{10} p_{r,i} &= \log_{10} c_{w(i)} + z_{w(i)}\log_{10} A_{T,i} + \varepsilon_{i} &&\text{(M1)}
+y = f(x) = cx^z &&\text{(1)}
 \end{aligned}
 $$
 
-where $\varepsilon_i$ is the error term that is properly weighted by Huber's function. Robust regression analysis is appropriate because it is robust to outliers caused by the small sample size (typical for large $A_T$ values). The first model (M0) assumes the "universal" scaling with the single exponent $z$ across watersheds; i.e., the branching ratio at all the $50$ watersheds follows the same power law with the watershed-specific constant $\log_{10} c_{w(i)}$ ($w(i)$ is watershed $w$ for a data point $i$). In contrast, the second model (M1) assumes the "localized" scaling with the watershed-specific exponent $z_{w(i)}$. I estimated the evidence ratio of the two models using the approximated Bayes Factor (BF) [@wagenmakersPracticalSolutionPervasive2007], which is defined as $\text{BF} = \exp \left(\frac{\text{BIC(M1)} - \text{BIC(M0)}}{2} \right)$. In this definition, a value of $\text{BF} >1$ gives the support for M0 over M1; for example, if $\text{BF}=2$, the model M0 is twice as likely as the model M1.
+where $c$ is the scaling constant and $z$ is the scaling exponent. The scale invariance of this function can be easily proved by multiplying an arbitrary scaling factor $\lambda$:
 
-The analysis provided decisive support for M0 with $\text{BF} \approx 3.00 \times 10^{20}$. Under M0, as evident from its model formula, the rank of the expected branching ratio $\text{E}(\log_{10} p_r)$ never changed across scales (Figure \@ref(fig:fig-pr); see regression lines). This result is inconsistent with the author's statement "*by extracting different river networks at various scales (i.e., various* $A_T$ val*ues) and assessing the rivers' rank in terms of* $p_r$*, one observes that rivers that look more "branching" (i.e., have higher* $p_r$*) than others for a given* $A_T$ *value can become less "branching" for a different* $A_T$ *value (Fig. 3).*" I also must note that I did not find any significant correlation between watershed area $A$ [km$^2$] and branching ratio $p_r$ [km$^{-1}$] when extracted with a constant value of $A_T = 1~\text{km}^2$ across watersheds (Spearman's rank correlation = `r paste0("$", op(cor_pa$estimate), "$")`, p-value = `r op(cor_pa$p.value)`), as opposed to the statement in the original article "...*if ... all of them extracted from the same DEM (same* $l$ *and same* $A_T$ *in km*$^2$*), then the larger river network will appear more branching (i.e., have larger* $p_r$*).*" My re-analysis revealed that the author's conclusion merely reflects the statistical artifact of inconsistent units across watersheds.
+$$
+\begin{aligned}
+y'=f(\lambda x)=c\lambda^zx^z = \lambda^z f(x) = \lambda^z y  &&\text{(2)}
+\end{aligned}
+$$
 
-```{r fig-pr, fig.cap="Log-log plot substantiates the power-law scaling of dimensional branching ratio $p_r$ along the axis of observation scale $A_T$. Colors indicate rivers highlighted in the original article [@carraroOptimalChannelNetworks2022]. Individual data points are shown in dots, whose transparency is proportional to the number of links $N_L$ (i.e., the sample size). Lines are predicted values from the model M0 (i.e., the expected value of branching ratio)."}
+The above equation is interpreted as a sign of scale invariance because the multiplicative extension/shrink of scale $x$ by factor $\lambda$ results in the same shape of the original object $y$ but with a *different scale* [@proektScaleInvarianceDynamics2012] (i.e., the structural property or function is preserved). Hence, the observed object $y$ (= function $f(x)$) is said to be scale invariant.
 
-knitr::include_graphics(here::here("output/figure_pr_all.pdf"))
-```
+Although a power law is the most famous example of scale-invariance, any function $f(x)$ that suffices the following equation is said to be scale invariant [@rodriguez-iturbeFractalRiverBasins2001; @proektScaleInvarianceDynamics2012]:
 
-Carraro and Altermatt [@carraroOptimalChannelNetworks2022] offered an important perspective on the use of the different classes of virtual river networks. Therefore, a full re-interpretation/re-analysis is warranted to provide useful insights into how we assess river network structure.
+$$
+\begin{aligned}
+f(\lambda x) = \lambda^z f(x) &&\text{(3)}
+\end{aligned}
+$$
+A general property of this function is "scaling," in which the structural property of the object changes predictably across scale $x$.
 
-## Data availability
+Conversely, a "scale-dependent" object possesses contrasting properties. A perfect square exemplifies an scale-dependent object. If we assume $500$ km on a side, the perimeter ($500 \times 4 =2000$ km) remains constant regardless ruler length $x$ (assuming $2000$ is a divisible number). Therefore, such geometric features have a characteristic scale that uniquely characterizes its physical quantity. This property is called "non-scaling," which contrasts with the property of a scale-invariant object. Although I used a perfect square for the sake of simplicity, a more general definition of non-scaling is $f(\lambda x) \ne \lambda^zf(x)$. Thus, "scale-dependent" and "scale-invariance" are contrasting observations, just like "competition" and "mutualism" if ecological analogy allowed.
 
-Codes and data are available at <https://github.com/aterui/public-proj_fractal-river>.
 
-## Competing interest
 
-None declared.
 
-## Reference
+<!-- Carraro and Altermatt @carraroOptimalChannelNetworks2022 provided evidence that branching ratio $p_r$ follows a power law along the axes of observation scale $A_T$ and pixel size $l$ (i.e., length on a side) using OCNs (Equation 1 in the original article). Also, the authors visually showed that the relationship between $p_r$ and $A_T$ follows a power-law using the data from 50 real river networks (Figure 3a in the original article). Despite this, the authors claimed that "*Here we show that an alleged property of such random networks (branching probability) is a scale-dependent quantity that does not reflect any recognized metric of rivers' fractal character*..." (Abstract) This interpretation is the opposite as it has been defined in the literature of scale-invariance [@rinaldoEvolutionSelectionRiver2014; @rodriguez-iturbeFractalRiverBasins2001; @brownFractalNatureNature2002; @proektScaleInvarianceDynamics2012], including the author's previous publication [@giomettoScalingBodySize2013]. Instead, the conclusion derived from their analysis should have been "*branching ratio is a scale invariant feature that reflects rivers' fractal character."* -->
+
+<!-- Second, units are inconsistent in their analysis of real river networks. The authors employed the number of pixels as a unit of measurement in their analysis. However, they used different pixel sizes (length on a side) among watersheds (`r round(min(df_m$l_m))` m to `r round(max(df_m$l_m))` m), meaning that the same number of pixels translates into very different lengths and areas. For example, in Figure 3 in the original article, the observation scale $A_T$ ranges $20 - 500$ pixels. This pixel range translates into `r op(((min(df_m$l_m)^2)*20)/1E+6, 1)` -- `r op(((min(df_m$l_m)^2)*500)/1E+6, 1)` km$^2$ for the `r df_m$name[which.min(df_m$l_m)]` river (with smallest pixel size) and `r op(((max(df_m$l_m)^2)*20)/1E+6, 1)` -- `r op(((max(df_m$l_m)^2)*500)/1E+6, 1)` km$^2$ for the `r df_m$name[which.max(df_m$l_m)]` river (with largest pixel size). Further, the branching ratio $p_r$ is also affected by this variation in pixel size as its unit is [pixel length$^{-1}$]. Once the pixel length is converted to a unit of km, the branching ratio represents the number of links per `r op(min(df_m$l_m)/1E+3, 1)` km in `r df_m$name[which.min(df_m$l_m)]`, whereas it represents the number of links per `r op(max(df_m$l_m)/1E+3, 1)` km in `r df_m$name[which.max(df_m$l_m)]`. Hence, the authors compared values with different units. -->
+
+<!-- To explore the consequences of inconsistent units, I re-analyzed their data with MERIT Hydro [@yamazakiMERITHydroHighresolution2019] that has constant pixel size. I extracted river networks with 20 values of $A_T$ [km$^2$] ($A_T=1,...,1000$ with an equal interval at a $\log_{10}$ scale, but confined to $A_T <$ $A$ for small rivers), at which I estimated branching ratio as $p_r = \frac{N_L}{N}$ [km$^{-1}$]. $p_r$ is the inverse of the mean link length. Thus, its estimation accuracy is affected by the number of links (i.e., the sample size). To statistically substantiate the power-law of $p_r$, one must account for this statistical uncertainty. Therefore, I fitted the following log-linear models with robust regression: -->
+
+<!-- $$ -->
+<!-- \begin{aligned} -->
+<!-- \log_{10} p_{r,i} &= \log_{10} c_{w(i)} + z\log_{10} A_{T,i} + \varepsilon_{i} &&\text{(M0)}\\ -->
+<!-- \log_{10} p_{r,i} &= \log_{10} c_{w(i)} + z_{w(i)}\log_{10} A_{T,i} + \varepsilon_{i} &&\text{(M1)} -->
+<!-- \end{aligned} -->
+<!-- $$ -->
+
+<!-- where $\varepsilon_i$ is the error term that is properly weighted by Huber's function. Robust regression analysis is appropriate because it is robust to outliers caused by the small sample size (typical for large $A_T$ values). The first model (M0) assumes the "universal" scaling with the single exponent $z$ across watersheds; i.e., the branching ratio at all the $50$ watersheds follows the same power law with the watershed-specific constant $\log_{10} c_{w(i)}$ ($w(i)$ is watershed $w$ for a data point $i$). In contrast, the second model (M1) assumes the "localized" scaling with the watershed-specific exponent $z_{w(i)}$. I estimated the evidence ratio of the two models using the approximated Bayes Factor (BF) [@wagenmakersPracticalSolutionPervasive2007], which is defined as $\text{BF} = \exp \left(\frac{\text{BIC(M1)} - \text{BIC(M0)}}{2} \right)$. In this definition, a value of $\text{BF} >1$ gives the support for M0 over M1; for example, if $\text{BF}=2$, the model M0 is twice as likely as the model M1. -->
+
+<!-- The analysis provided decisive support for M0 with $\text{BF} \approx 3.00 \times 10^{20}$. Under M0, as evident from its model formula, the rank of the expected branching ratio $\text{E}(\log_{10} p_r)$ never changed across scales (Figure \@ref(fig:fig-pr); see regression lines). This result is inconsistent with the author's statement "*by extracting different river networks at various scales (i.e., various* $A_T$ val*ues) and assessing the rivers' rank in terms of* $p_r$*, one observes that rivers that look more "branching" (i.e., have higher* $p_r$*) than others for a given* $A_T$ *value can become less "branching" for a different* $A_T$ *value (Fig. 3).*" I also must note that I did not find any significant correlation between watershed area $A$ [km$^2$] and branching ratio $p_r$ [km$^{-1}$] when extracted with a constant value of $A_T = 1~\text{km}^2$ across watersheds (Spearman's rank correlation = `r paste0("$", op(cor_pa$estimate), "$")`, p-value = `r op(cor_pa$p.value)`), as opposed to the statement in the original article "...*if ... all of them extracted from the same DEM (same* $l$ *and same* $A_T$ *in km*$^2$*), then the larger river network will appear more branching (i.e., have larger* $p_r$*).*" My re-analysis revealed that the author's conclusion merely reflects the statistical artifact of inconsistent units across watersheds. -->
+
+<!-- ```{r fig-pr, fig.cap="Log-log plot substantiates the power-law scaling of dimensional branching ratio $p_r$ along the axis of observation scale $A_T$. Colors indicate rivers highlighted in the original article [@carraroOptimalChannelNetworks2022]. Individual data points are shown in dots, whose transparency is proportional to the number of links $N_L$ (i.e., the sample size). Lines are predicted values from the model M0 (i.e., the expected value of branching ratio)."} -->
+
+<!-- knitr::include_graphics(here::here("output/figure_pr_all.pdf")) -->
+<!-- ``` -->
+
+<!-- Carraro and Altermatt [@carraroOptimalChannelNetworks2022] offered an important perspective on the use of the different classes of virtual river networks. Therefore, a full re-interpretation/re-analysis is warranted to provide useful insights into how we assess river network structure. -->
+
+<!-- ## Data availability -->
+
+<!-- Codes and data are available at <https://github.com/aterui/public-proj_fractal-river>. -->
+
+<!-- ## Competing interest -->
+
+<!-- None declared. -->
+
+<!-- ## Reference -->
