@@ -14,7 +14,7 @@ df_str <- readRDS(here::here("data_fmt/epsg4326_strnet.rds")) %>%
 # plot --------------------------------------------------------------------
 
 v_a <- unique(df_str$a_t)
-A <- c(v_a[1], v_a[14])
+A <- c(v_a[8], v_a[16])
 
 g_str <- foreach(i = 1:length(A)) %do% {
   df_eel <- df_str %>% 
@@ -39,5 +39,5 @@ g_all <- g_str[[1]] + g_str[[2]] + g_p + guide_area() +
 
 ggsave(g_all,
        filename = "output/figure_scaling.pdf",
-       width = 12,
+       width = 11,
        height = 6)
