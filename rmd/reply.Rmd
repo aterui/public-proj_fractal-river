@@ -1,0 +1,59 @@
+---
+output:
+  bookdown::pdf_document2:
+   latex_engine: xelatex
+   toc: false
+   number_sections: false
+knit: (function(inputFile, encoding) {
+        rmarkdown::render(inputFile,
+                          encoding = encoding, 
+                          output_dir = "document_output")
+      })
+mainfont: "Times New Roman"
+date: '2022-06-29'
+---
+
+Editor Comments to the Author:
+
+I ask the author to revise their manuscript according to the reviwers' comments.
+Especially, as both reviewers pointed out, authors should explain the merit when
+this article would be published in Population Ecology rather than Communications
+Earth & Environment.
+
+
+Reviewer(s)' Comments to Author:
+
+Reviewer: 1
+
+Comments to the Author
+This article presents an opinion on the definition of the ecological term "scale invariance," particularly in relation to the branching probability of river network structure. It is conventionally believed that the river network structure is scale-invariant, but the author points out that the arguments of Carraro and Altermatt (2022) recently published in Communications Earth & Environment contradict this belief. The author argues that the misconception of the term "scale invariance" led to this contradiction and provides a clear definition of the term, as well as a reanalysis of Carraro and Altermatt's original data, to show that their data actually supports the conventional idea of scale invariance.
+
+While I support this article's main argument, I have some concerns that need to be addressed. Firstly, the main arguments of Carraro and Altermatt (2022) are unclear from the present presentation of this article. The author's concern would be worth considering if it is closely related to the main conclusions of Carraro and Altermatt (2022) and other publications citing it, but if this is a minor correction of terminology, the significance of this article may be lower than discussed in the manuscript.
+
+Secondly, the author mentioned that this is a "widespread confusion" in the Abstract, so I wonder if the discussion of this article can be expanded to include similar arguments in other publications, even beyond the branching probability issue. Examples to be considered would include predator-prey interactions (Hatton et al., 2015), biological metabolism (Brown et al., 2004), food chain length (Sabo et al., 2010), and species-area relationship (Hubbell, 2001), as noted by the author (L99).
+
+Lastly, I question whether this article should be published in Population Ecology or Communications Earth & Environment, the journal that published Carraro and Altermatt (2022). Although this decision is up to the editorial offices, I encourage the author to expand the discussion beyond the branching probability issue (as suggested in my comment #2) to increase the article's generality if it should be published in Population Ecology.
+
+Specific comments
+L13: "the conclusion in Carraro and Altermatt (2022)" => their conclusion
+L14: "their data and analysis" => reanalysis of their data
+L14: "which is common" => in contrast to the common use
+L30: You may cite references for "past research".
+L31: What do you mean by "this observation"?
+L33: "the original conclusion in Carraro and Altermatt (2022)" => their conclusion
+L35: "their data and analysis" => reanalysis of their data
+L36: It is not yet convincing whether this is really a "widespread confusion" among other studies.  I want to see other examples.
+L39: Cite references to provide other examples of misunderstanding about the definition of scale invariance. Hopefully, the author may discuss them in other section(s).
+L58: "perfect" is not necessary as a square means a quadrilateral with four equal sides and four equal angles
+L63: I do not think this is a good analogy because mutualism is potentially antagonistic (i.e. the mutualism-antagonism continuum).
+L71: "larger" => smaller?
+L79: You may explain in more detail how equation 4 was derived.
+L92: A_T is different between panels and captions (e.g. 12.7 km^2 and 1 km^2 for panel A).
+L103: It may be fair to introduce "important insights" provided by Carraro and Altermatt (2022) so that readers can judge how critical their misunderstanding is.
+
+Reviewer: 2
+
+Comments to the Author
+I found the draft interesting and well written. A major comment that I would like to add is that the abstract is written like a repetition of the introduction. It is better to revise the abstract.
+
+Beside the technical part, I am wondering why the author has submitted the work to this journal? It is written like a discussion paper, following Carraro L, Altermatt F (2022) Communications Earth & Environment. I believe healthy academic discussions should be encouraged. If so, this work is more suitable to above journal?
