@@ -35,7 +35,9 @@ g_all <- g_str[[1]] + g_str[[2]] + g_p + guide_area() +
   plot_layout(design = layout,
               guides = "collect",
               widths = c(1, 2, 1)) +
-  plot_annotation(tag_levels = "A")
+  plot_annotation(tag_levels = "a",
+                  tag_prefix = "(",
+                  tag_suffix = ")")
 
 ggsave(g_all,
        filename = "output/figure_scaling.pdf",

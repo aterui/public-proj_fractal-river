@@ -4,20 +4,31 @@ output:
    latex_engine: xelatex
    toc: false
    number_sections: false
-fontsize: 11pt
+fontsize: 12pt
 knit: (function(inputFile, encoding) {
         rmarkdown::render(inputFile,
                           encoding = encoding, 
                           output_dir = "document_output")
       })
 mainfont: "Times New Roman"
-date: '2022-06-29'
 ---
+
+Dear Editor,
+
+This is a revision of POEC-2023-0019 "Mathematical characterization of fractal river networks." Thank you for allowing me to revise this manuscript. I have refined my text in light of comments
+from the reviewers. In addition, I noticed that the example of scale dependence (square) was not mathematically accurate -- therefore, I made changes to the description (L62 -- 71) and the figure (figure 1). In this letter, the original comments are shown in italics, followed by my response.
+
+I hope the manuscript is now suitable for publication in Population Ecology.
+
+Sincerely,
+
+Akira Terui
+
 
 ## Reply to the Editor
 
-I ask the author to revise their manuscript according to the reviwers' comments.
-Especially, as both reviewers pointed out, authors should explain the merit when this article would be published in Population Ecology rather than Communications Earth & Environment.
+*I ask the author to revise their manuscript according to the reviwers' comments.
+Especially, as both reviewers pointed out, authors should explain the merit when this article would be published in Population Ecology rather than Communications Earth & Environment.*
 
 > Thank you for taking the time to handle my manuscript.
 I appreciate the reviewer's concern regarding my submission to Population Ecology and understand why they questioned it.
@@ -32,67 +43,72 @@ Please refer to my point-by-point response to the reviewer's comments below for 
 
 ### Major comments
 
-While I support this article's main argument, I have some concerns that need to be addressed. 
+*While I support this article's main argument, I have some concerns that need to be addressed. 
 Firstly, the main arguments of Carraro and Altermatt (2022) are unclear from the present presentation of this article.
-The author's concern would be worth considering if it is closely related to the main conclusions of Carraro and Altermatt (2022) and other publications citing it, but if this is a minor correction of terminology, the significance of this article may be lower than discussed in the manuscript.
+The author's concern would be worth considering if it is closely related to the main conclusions of Carraro and Altermatt (2022) and other publications citing it, but if this is a minor correction of terminology, the significance of this article may be lower than discussed in the manuscript.*
 
 > Thank you for your valuable suggestion! I completely agree with your point. In the initial submission, I referenced a sentence from Carraro and Altermatt 2022:  "*an alleged property of such random networks (branching probability) is a scale dependent quantity that does not reflect any recognized metric of rivers' fractal character...*"
 This sentence appeared in the Abstract as one of the major conclusions and was discussed for approximately three pages in the main text, out of a total of seven pages.
 However, this conclusion was derived from their misconception of scale invariance, which led them to use an incorrect definition of scale invariance to invalidate past research that followed the correct definition.
 As a result, correcting this misconception compromises more than one-third of their article.
-Therefore, correcting this issue is not just a simple correction of terminology.
+Therefore, this issue is not just a simple correction of terminology.
 Based on your helpful suggestion, I added a new section called "Practical Issues" to the revised manuscript to clarify this point.
 I hope that the revised text now better explains why this misconception matters. Thank you again for your insightful feedback.
 
-Secondly, the author mentioned that this is a "widespread confusion" in the Abstract, so I wonder if the discussion of this article can be expanded to include similar arguments in other publications, even beyond the branching probability issue. 
-Examples to be considered would include predator-prey interactions (Hatton et al., 2015), biological metabolism (Brown et al., 2004), food chain length (Sabo et al., 2010), and species-area relationship (Hubbell, 2001), as noted by the author (L99).
+*Secondly, the author mentioned that this is a "widespread confusion" in the Abstract, so I wonder if the discussion of this article can be expanded to include similar arguments in other publications, even beyond the branching probability issue. 
+Examples to be considered would include predator-prey interactions (Hatton et al., 2015), biological metabolism (Brown et al., 2004), food chain length (Sabo et al., 2010), and species-area relationship (Hubbell, 2001), as noted by the author (L99).*
 
-L36: It is not yet convincing whether this is really a "widespread confusion" among other studies. I want to see other examples.
-L39: Cite references to provide other examples of misunderstanding about the definition of scale invariance. Hopefully, the author may discuss them in other section(s).
+*L36: It is not yet convincing whether this is really a "widespread confusion" among other studies. I want to see other examples.*
 
-> Thank you.
-Based on your comment, I substantially revised the section "Concluding remarks" (changed to "Concluding remarks: relevance to other ecological research).
-This is hard to say, but the confusion about scale invariance (= scaling) is so widespread that the correction of this terminology is no longer realistic.
-Most ecologists believe "scaling" is a property of "scale dependence": the truth is the opposite.
-Scaling is possible only when the observed object is scale invariant.
-I clarified this point in the revised manuscript - even famous ecologists make this misuse (e.g., Dr. Jonathan Chase).
-Drs. Hubbell and Brown are some of the few ecologists who use the term(s) as defined in mathematics.
+*L39: Cite references to provide other examples of misunderstanding about the definition of scale invariance. Hopefully, the author may discuss them in other section(s).*
 
->I clarified this point as follows:
+> Thank you for your comment! Based on your feedback, I made substantial revisions to the "Concluding remarks" section, which I have now retitled as "Concluding Remarks: Relevance to Other Ecological Research."
+It is difficult to admit, but the misconception about scale invariance, or scaling, is so pervasive in ecology that correcting this terminology is no longer a realistic goal.
+Most ecologists mistakenly believe that "scaling" is a property of "scale dependence," when in fact, the opposite is true: scaling is only possible when the observed object is scale invariant.
+I have clarified this point in the revised manuscript, as even well-known ecologists like Dr. Jonathan Chase have made this mistake.
+However, there are a few ecologists like Drs. Hubbell and Brown who use the term(s) as defined in mathematics.
+
+>I clarified this point as follows (L136+):
 "However, in ecology, the terms are often misused or (implicitly) defined in stark contrast with fractal theory (RodríguezIturbe and Rinaldo 2001; Proekt et al. 2012). Ecologists use “scale dependence”when ecological patterns change across scales (Levin 1992; Clark et al. 2021). This use of scale dependence per se is not an issue; however, a confusion emerges when it is paired with the term “scaling” to characterize scale dependence. Countless numbers of ecological research use “scaling” as a property of “scale dependence” (Keil et al. 2018; Jarzyna and Jetz 2018; Chase et al. 2018; Gonzalez et al. 2020; Nishizawa et al. 2022), although some ecologists refer to scaling as a property of scale invariance as defined in fractal theory (Hubbell 2001; Brown et al. 2002, 2004). This confusion is so widespread that the diverged use of the same terms between ecology and mathematics is unavoidable."
 
-Lastly, I question whether this article should be published in Population Ecology or Communications Earth & Environment, the journal that published Carraro and Altermatt (2022). Although this decision is up to the editorial offices, I encourage the author to expand the discussion beyond the branching probability issue (as suggested in my comment #2) to increase the article's generality if it should be published in Population Ecology.
+*Lastly, I question whether this article should be published in Population Ecology or Communications Earth & Environment, the journal that published Carraro and Altermatt (2022).
+Although this decision is up to the editorial offices, I encourage the author to expand the discussion beyond the branching probability issue (as suggested in my comment #2) to increase the article's generality if it should be published in Population Ecology.*
 
-> I agree. I followed your advice \#2 to make this manuscript suitable for Population Ecology. I had no choice but to submit this manuscript to Population Ecology because Communications Earth & Environment rejected this manuscript. I hope you will understand the situation. Please see my response to the editor and reviewer \#2 as well.
+> Agreed. I followed your second suggestion to make the manuscript appropriate for Population Ecology. Unfortunately, Communications Earth & Environment rejected this manuscript, leaving me with no choice but to submit it to Population Ecology. I hope you can understand the situation. Please also see my response to the editor and reviewer #2 for further details.
 
 ### Minor comments
 
-L103: It may be fair to introduce "important insights" provided by Carraro and Altermatt (2022) so that readers can judge how critical their misunderstanding is.
+*L103: It may be fair to introduce "important insights" provided by Carraro and Altermatt (2022) so that readers can judge how critical their misunderstanding is.*
 
-> XXX
+> I appreciate your attention to detail, but unfortunately, there are several other issues with their article. For instance, their data sources are fundamentally compromised as they used different resolutions of DEMs when comparing river structures across watersheds, ranging from less than 100 meters to over 1000 meters. As a result, I had to reanalyze the data with entirely new sources since their original data are unreliable. Therefore, in my opinion, any conclusions drawn in their article are not trustworthy. Nonetheless, I do not want to delve into the specifics since most readers are not interested in these details (yet, it overturns the entire content of the article). While I wrote "important insights" for courtesy, there is nothing in their article that I can rely on. Please see my preprint for more details: https://www.biorxiv.org/content/10.1101/2022.11.07.515375v2.full 
 
-L63: I do not think this is a good analogy because mutualism is potentially antagonistic (i.e. the mutualism-antagonism continuum).
+*L63: I do not think this is a good analogy because mutualism is potentially antagonistic (i.e. the mutualism-antagonism continuum).*
 
 > Agreed, removed the sentence.
 
-L71: "larger" => smaller?
+*L71: "larger" => smaller?*
 
 > Thank you, I meant that "wider" rivers are extracted with larger A_T values. I have reworded.
 
-L13: "the conclusion in Carraro and Altermatt (2022)" => their conclusion; L14: "their data and analysis" => reanalysis of their data; L14: "which is common" => in contrast to the common use; L30: You may cite references for "past research".; L31: What do you mean by "this observation"?; L33: "the original conclusion in Carraro and Altermatt (2022)" => their conclusion; L35: "their data and analysis" => reanalysis of their data; L58: "perfect" is not necessary as a square means a quadrilateral with four equal sides and four equal angles; L79: You may explain in more detail how equation 4 was derived.; L92: A_T is different between panels and captions (e.g. 12.7 km^2 and 1 km^2 for panel A).
+*L13: "the conclusion in Carraro and Altermatt (2022)" => their conclusion; L14: "their data and analysis" => reanalysis of their data; L14: "which is common" => in contrast to the common use; L30: You may cite references for "past research".; L31: What do you mean by "this observation"?; L33: "the original conclusion in Carraro and Altermatt (2022)" => their conclusion; L35: "their data and analysis" => reanalysis of their data; L58: "perfect" is not necessary as a square means a quadrilateral with four equal sides and four equal angles; L79: You may explain in more detail how equation 4 was derived.; L92: A_T is different between panels and captions (e.g. 12.7 km^2 and 1 km^2 for panel A).*
 
 > Thank you for your carefull review. I have addressed these points in the revised masnuscript, unless the sentences have been removed during the revision.
 
 ## Reply to Reviewer 2
 
-I found the draft interesting and well written. A major comment that I would like to add is that the abstract is written like a repetition of the introduction. It is better to revise the abstract.
+*I found the draft interesting and well written. A major comment that I would like to add is that the abstract is written like a repetition of the introduction. It is better to revise the abstract.*
 
 > Thank you! I revised the Abstract following your advice.
 
-Beside the technical part, I am wondering why the author has submitted the work to this journal? It is written like a discussion paper, following Carraro L, Altermatt F (2022) Communications Earth & Environment. I believe healthy academic discussions should be encouraged. If so, this work is more suitable to above journal?
+*Beside the technical part, I am wondering why the author has submitted the work to this journal? It is written like a discussion paper, following Carraro L, Altermatt F (2022) Communications Earth & Environment. I believe healthy academic discussions should be encouraged. If so, this work is more suitable to above journal?*
 
-> Agreed. However, this manuscript has been REJECTED by the journal.
+> Completely agreed. However, the journal rejected this manuscript.
 Actually, I was one of the reviewers for Carraro and Altermatt 2022 (you can see the review history here: https://static-content.springer.com/esm/art%3A10.1038%2Fs43247-022-00454-1/MediaObjects/43247_2022_454_MOESM2_ESM.pdf; I'm the reviewer 2).
 I even pointed out the misuse of the term as a reviewer.
 However, the authors refused to listen.
-I hope you understadn the current situation, and why I submit this manuscript to Population Ecology.
+This is why I submit this manuscript to Population Ecology.
+
+
+## Response to Copy Editor
+
+Thank you for your careful review. I followed your direction except Figure 2. If I use different symbols for different rivers, there will be too many symbols. I kept the Figure 2 as is for this reason. Thank you for your suggestion though!

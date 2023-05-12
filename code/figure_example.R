@@ -64,7 +64,7 @@ g2 <- g1 +
         axis.ticks = element_blank(),
         axis.text = element_blank())
 
-g0 <- g1 + ggtitle("Ordinary scale") + g2 + ggtitle("Log-log scale")
+g0 <- g1 + ggtitle("(a) Ordinary scale") + g2 + ggtitle("(b) Log-log scale")
 
 ggsave(g0,
        filename = "output/figure_example.pdf",
