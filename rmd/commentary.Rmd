@@ -1,11 +1,11 @@
 ---
 title: "Mathematical characterization of fractal river networks"
-output: word_document
-  # bookdown::pdf_document2:
-  #  keep_tex: true
-  #  latex_engine: xelatex
-  #  toc: false
-  #  number_sections: false
+output: 
+  bookdown::pdf_document2:
+   keep_tex: true
+   latex_engine: xelatex
+   toc: false
+   number_sections: false
 fontsize: 12pt
 mainfont: "Times New Roman"
 knit: (function(inputFile, encoding) {
