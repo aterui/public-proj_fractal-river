@@ -1,11 +1,11 @@
 ---
 title: "Mathematical characterization of fractal river networks"
-output:
-  bookdown::pdf_document2:
-   keep_tex: true
-   latex_engine: xelatex
-   toc: false
-   number_sections: false
+output: word_document
+  # bookdown::pdf_document2:
+  #  keep_tex: true
+  #  latex_engine: xelatex
+  #  toc: false
+  #  number_sections: false
 fontsize: 12pt
 mainfont: "Times New Roman"
 knit: (function(inputFile, encoding) {
@@ -128,7 +128,7 @@ As evident from equation (6), we can obtain the unique value of (dimensionless) 
 
 Overall, it is clear that the authors fundamentally misunderstood the mathematical definition of scale invariance. Inappropriate arguments arising from the misconception spanned from page 2 to 4; thus, correcting this misconception compromises the substantial portion of their article.
 
-# Distinctinct terminology in ecology
+# Distinct terminology in ecology
 
 The misconception in @carraroOptimalChannelNetworks2022 may be rooted in the distinct use of the concerned terms in ecology. Although some ecologists follow the mathematical definitions [@hubbellUnifiedNeutralTheory2001; @brownFractalNatureNature2002; @brownMetabolicTheoryEcology2004], the majority of research uses the terms in stark contrast with fractal theory. At least, there are three types of contrast.
 

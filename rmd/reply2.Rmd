@@ -15,10 +15,7 @@ mainfont: "Times New Roman"
 
 Dear Editor,
 
-This is a revision of POEC-2023-0019 "Mathematical characterization of fractal river networks." Thank you for allowing me to revise this manuscript. I have refined my text in light of comments
-from the reviewers. In addition, I noticed that the example of scale dependence (square) was not mathematically accurate -- therefore, I made changes to the description (L62 -- 71) and the figure (figure 1). In this letter, the original comments are shown in italics, followed by my response.
-
-I hope the manuscript is now suitable for publication in Population Ecology.
+This is a revision of Manuscript ID POEC-2023-0019.R1 "Mathematical characterization of fractal river networks." I appreciate the editor and editorial board for the second opportunity to revise this manuscript. As you can see below and main text, I have substantially modified the text (see "Distinct terminology in ecology"). I hope the manuscript is now suitable for publication in Population Ecology.
 
 Sincerely,
 
@@ -28,6 +25,8 @@ Akira Terui
 ## Reply to the Editor
 
 *I agree the reviewer, so I ask the author to have major revisions for the manuscript according the reviewer's comments. We understand that the manuscript had previously been rejected by Communications Earth & Environment and so it is submitted to Population Ecology. However, I think that the authors should give clearer explanations and detailed discussions for an article including criticisms to the papers published from another journal.*
+
+> Thank you, I agree with reviwer's opinion. Please see my specific responses to the reviewer comments for details. Please also notice that, as part of response to the reviewer, I re-worded the last sentence in the Abstract to avoid any confusion as "This provided an opportunity to address the distinct use of "scale invariance" and "scaling" in the ecological literature."
 
 ## Reply to Reviewer 1
 
