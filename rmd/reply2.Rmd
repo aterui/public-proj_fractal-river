@@ -1,0 +1,66 @@
+---
+output:
+  bookdown::pdf_document2:
+   latex_engine: xelatex
+   toc: false
+   number_sections: false
+fontsize: 12pt
+knit: (function(inputFile, encoding) {
+        rmarkdown::render(inputFile,
+                          encoding = encoding, 
+                          output_dir = "document_output")
+      })
+mainfont: "Times New Roman"
+---
+
+Dear Editor,
+
+This is a revision of POEC-2023-0019 "Mathematical characterization of fractal river networks." Thank you for allowing me to revise this manuscript. I have refined my text in light of comments
+from the reviewers. In addition, I noticed that the example of scale dependence (square) was not mathematically accurate -- therefore, I made changes to the description (L62 -- 71) and the figure (figure 1). In this letter, the original comments are shown in italics, followed by my response.
+
+I hope the manuscript is now suitable for publication in Population Ecology.
+
+Sincerely,
+
+Akira Terui
+
+
+## Reply to the Editor
+
+*I agree the reviewer, so I ask the author to have major revisions for the manuscript according the reviewer's comments. We understand that the manuscript had previously been rejected by Communications Earth & Environment and so it is submitted to Population Ecology. However, I think that the authors should give clearer explanations and detailed discussions for an article including criticisms to the papers published from another journal.*
+
+## Reply to Reviewer 1
+
+*The authors have addressed most of my comments in the first review, but one of my major concerns remains. The concern was whether the manuscript could be made more general by introducing similar misuse of the term in other subjects (since the author wrote that this misuse is prevalent in ecology), not just the issue of the river network structure. In response to this comment, the author has only added a few sentences (L138-144), which I feel are superficial minor revisions.*
+
+*While the authors explained that those previous studies have used "scaling" as "scale dependence", I would have expected deeper discussion in each subjuect. For example, does the misuse have any impact on their conclusions? If not, it can be misleading to write "widespread confusion" (L17 in abstract). Misuses of terms or even changes in definition often occur in science. - Hodges, K.E. (2008), Defining the problem: terminology and progress in ecology. Frontiers in Ecology and the Environment, 6: 35-42.*
+
+*I personally believe that what is more important is that the concepts are communicated correctly. Is concept misinterpretation really happening in those research subjects. I can read from abstract that it is, but there is no discussion of it in the main text. With that concern, I made the comment that the author may add section(s).*
+
+*The author aruged "Countless numbers of ecological research incorrectly use “scaling” as a property of “scale dependence” (Keil et al. 2018; Jarzyna and - Jetz 2018; Chase et al. 2018; Gonzalez et al. 2020; Galiana et al. 2021; Nishizawa et al. 2022)" (L140).  Those papers used "scaling" in the following contexts. [list of papers]. I wonder what specific confusions exist in their scientific arguments or conclusions? This discussion may help make the manuscript more attractive and more worth publishing.*
+
+> I appreciate your constructive feedback, and please accept my sincere apologies for not fully addressing your concerns. I misgauged the level of concern you may have had, which I now clearly understand.
+
+> I have added a section titled "Distinct terminology in ecology" where I describe how the terminology in ecology differs from fractal theory. In this section, I list the following distinct terminologies in ecology that contrast with fractal theory:
+
+> 1. Ecologists use scale invariance when the observation is scale-dependent, which is common in food web research.
+> 2. Ecologists use scale dependence when the observation is scale-invariant, which is common in community ecology.
+> 3. Ecologists use scaling when scaling is impossible, which is widespread across subdisciplines in Ecology.
+
+> In the main text, I discuss each case in detail with corresponding references. These ecological uses of scale invariance and scaling can be inferred from contexts, and it could be a matter of terminology if "people are skilled at deciphering meaning from context" (Hodges, 2008). However, this is not the case with scale invariance. In ecology, the terms are used in a way that completely undermines the original theoretical implications of fractals. Even worse, some researchers use the ecological terminology of scale invariance with explicit reference to scaling theory (e.g., Gonzalez et al., 2020), despite the fact that scaling means the complete opposite in scaling theory. "Conceptual" miscommunications are certainly happening. I acknowledge that some citations in the revised text may represent a simple terminological correction (e.g., Nishizawa et al., 2022). However, over time, the terminological divergence has become so substantial that communication between ecology and fractal theory has become extremely difficult. I believe the disrespectful arguments presented in Carraro and Altermatt (2022) are rooted in this confusion and serve as an unfortunate example of the negative consequences resulting from this divergent terminology.
+
+*I understand the scientific significance of correcting the denial of the author's past work by others, and I also sympathize with the personal feelings. That's why I feel a bit pity that I do not see sufficiently extensive and consistent discussion of the scientific significance beyond the reiver netwrok issue in the revised version.*
+
+> Thank you for your thoughtful comment. As I explained above, I have now added a new section to expand a dicussion beyond river networks. However, I had really hard time to find a way not to "unreasonably" critisize past research that used the ecological terminology of "scale invariance" and "scaling." Considering the deep divide between ecology and fractal theory, achieving consistent terminology may prove challenging. Instead, it is recommended that authors clarify the context of terminology in their research to promote better understanding. Simultaneously, it is crucial to encourage ecologists to recognize the mathematical definition of scale invariance. By fostering clearer communication and understanding between the fields, we can pave the way for more productive interdisciplinary collaborations.
+
+> I have clarified this point in the conclusion section. Still, it might sound "aggressive" or "disrespectful" to some extent. If it reads so, please let me know; I'm more than happy to address it, as I know how people would feel when their work is unreasonably criticized.
+
+
+*Overall, I again recommend that a dramatic revision would be still needed for more general discussion unless it is published from that journal (Communications Earth & Environment) as a communication letter. The titles of the manuscript and sections may also need to be revised accordingly. Alternatively, you may invite others as co-authors or ask for their comments (e.g. Yeakel et al. 2014; Anderson and Hayes 2018) because they were also critisized by Carraro and Altermatt (2022). Anyway, beucase this is a matter of the journal's scope, I wish to leave the final decision to the editor.*
+
+> Thank you for your input, and I have discussed this matter with the editorial board. The submission category for this manuscript is "Notes and Insights," which is described as follows in the journal's guidelines:
+
+> Description: a) brief notes on both empirical and theoretical investigations, or b) comments on previously published papers to develop further discussion.
+
+> Therefore, I have decided to retain the overall structure of the manuscript as a comment on Carraro and Altermatt 2022. However, as I responded to the comments above, I do agree with your opinion that a more general discussion is needed. Consequently, I have added a section titled "Distinct terminology in ecology." I believe that these changes have made the manuscript more suitable for the journal.
+
