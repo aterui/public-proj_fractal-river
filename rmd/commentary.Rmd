@@ -1,6 +1,6 @@
 ---
 title: "Mathematical characterization of fractal river networks"
-output: 
+output:
   bookdown::pdf_document2:
    keep_tex: true
    latex_engine: xelatex
