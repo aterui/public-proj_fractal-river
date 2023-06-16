@@ -5,4 +5,4 @@
 *.tif
 *.pdf
 rmd/document_output/commentary.docx
-*reply
+reply*
