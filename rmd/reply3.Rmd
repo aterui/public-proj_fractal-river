@@ -1,0 +1,37 @@
+---
+output:
+  bookdown::pdf_document2:
+   latex_engine: xelatex
+   toc: false
+   number_sections: false
+fontsize: 12pt
+knit: (function(inputFile, encoding) {
+        rmarkdown::render(inputFile,
+                          encoding = encoding, 
+                          output_dir = "document_output")
+      })
+mainfont: "Times New Roman"
+---
+
+Dear Editor,
+
+This is a revision of Manuscript ID POEC-2023-0035.R1 "Mathematical characterization of fractal river networks." I appreciate your thoughtful comments. As you can see below and main text, I have revised the text following the advice from the reviewer. I hope the manuscript is now suitable for publication in Population Ecology.
+
+Sincerely,
+
+Akira Terui
+
+
+# Reviewer: 1
+
+*I appreciate the author's efforts to add the general discussion regarding the terms following my comments.*
+
+*Let me make a few additional minor comments. While the general discussion added is excellent, the title and Introduction of the manuscript do not align with it. Therefore, I suggest the author may make the title slightly more general, which would attract a larger audience toward the issue.  In addition, I recommend at least one paragraph be made as a general introduction.*
+
+> I concur. I have expanded a paragraph in the Introduction to offer a more comprehensive perspective. Furthermore, I recognized that this particular point could also be relevant to the Abstract. Consequently, I made a minor revision to the abstract to ensure that readers can accurately grasp the intended context from it.
+
+> I also made a change to the title as "Revisiting scale invariance and scaling in ecology: River fractals as an example."
+
+*The last sentence, "An unsolved mystery..." (L189), seems somewhat provocative. This sentence might be unnecessary. Alternatively, if space permits, the author may discuss the gap among their previous papers in a more constructive way.*
+
+> I very much appreciate this input. I have removed this sentence.
