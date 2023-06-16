@@ -4,6 +4,6 @@
 .Ruserdata
 *.tif
 *.pdf
-rmd/document_output/commentary.docx
+rmd/document_output/commentary*
 rmd/reply*
 rmd/cover_letter*
