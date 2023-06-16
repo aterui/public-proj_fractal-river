@@ -5,4 +5,5 @@
 *.tif
 *.pdf
 rmd/document_output/commentary.docx
-reply*
+rmd/reply*
+rmd/cover_letter*
