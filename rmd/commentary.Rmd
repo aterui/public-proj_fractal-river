@@ -1,11 +1,11 @@
 ---
 title: "Revisiting scale invariance and scaling in ecology: River fractals as an example"
-output:
-  bookdown::pdf_document2:
-   keep_tex: true
-   latex_engine: xelatex
-   toc: false
-   number_sections: false
+output: word_document
+  # bookdown::pdf_document2:
+  #  keep_tex: true
+  #  latex_engine: xelatex
+  #  toc: false
+  #  number_sections: false
 fontsize: 12pt
 mainfont: "Times New Roman"
 knit: (function(inputFile, encoding) {
@@ -37,9 +37,9 @@ Scale invariance, which refers to the preservation of geometric properties regar
 
 # Maintext
 
-The term "scale invariance" refers to the preservation of geometric (or mathematical) properties across different observation scales. This intriguing characteristic entails the existence of a consistent scaling law that facilitates the generalization of ecological patterns across a broad range of scales [@levinProblemPatternScale1992; @rodriguez-iturbeFractalRiverBasins2001; @clarkGeneralStatisticalScaling2021]. Ecologists have been captivated by the concept of scale invariance or "fractals" [@hubbellUnifiedNeutralTheory2001; @brownFractalNatureNature2002; @brownMetabolicTheoryEcology2004; @teruiMetapopulationStabilityBranching2018; @teruiEmergentDualScaling2021], and fractal theory has played a pivotal role in comprehending the dynamics of ecological systems [@brownFractalNatureNature2002].
+The term "scale invariance" refers to the preservation of geometric (or mathematical) properties across different observation scales. This intriguing characteristic entails the existence of a scaling law that facilitates the generalization of spatial and temporal patterns across a broad range of scales [@levinProblemPatternScale1992; @rodriguez-iturbeFractalRiverBasins2001; @clarkGeneralStatisticalScaling2021]. The ecological implication of scale invariance or "fractals" has gained great interest over the past few decades [@hubbellUnifiedNeutralTheory2001; @brownFractalNatureNature2002; @brownMetabolicTheoryEcology2004; @teruiMetapopulationStabilityBranching2018; @teruiEmergentDualScaling2021], and fractal theory has played a pivotal role in understanding ecosystem dynamics [@brownFractalNatureNature2002].
 
-Rivers form complex branching networks with fractal characteristics -- "there are basins within basins within basins, all of them looking alike [@rinaldoEvolutionSelectionRiver2014]." The ecological implication of fractal structure has gained great interest over the past few decades [@grantLivingBranchesPopulation2007; @carraraDendriticConnectivityControls2012; @mariMetapopulationPersistenceSpecies2014], and there have been concerted efforts to investigate the role of river fractals in controlling metapopulation [@teruiMetapopulationStabilityBranching2018; @yeakelSynchronisationStabilityRiver2014; @mariMetapopulationPersistenceSpecies2014] and metacommunity dynamics [@teruiEmergentDualScaling2021; @carraraDendriticConnectivityControls2012; @andersonEffectsDispersalRiver2018]. The proper quantification of river network complexity is therefore crucial, and some researchers used a metric of "branching probability," i.e., the probability of observing a joining tributary per unit river distance [@yeakelSynchronisationStabilityRiver2014; @teruiMetapopulationStabilityBranching2018; @teruiEmergentDualScaling2021]. It has been shown that this measure reflects the fractal nature of river networks because it exhibits the sign of scale invariance [@peckhamReformulationHortonLaws1999; @teruiMetapopulationStabilityBranching2018; @rodriguez-iturbeFractalRiverBasins2001].
+Rivers form complex branching networks with fractal characteristics -- "there are basins within basins within basins, all of them looking alike [@rinaldoEvolutionSelectionRiver2014]." There have been concerted efforts to investigate the role of river fractals in controlling metapopulation [@teruiMetapopulationStabilityBranching2018; @yeakelSynchronisationStabilityRiver2014; @mariMetapopulationPersistenceSpecies2014] and metacommunity dynamics [@teruiEmergentDualScaling2021; @carraraDendriticConnectivityControls2012; @andersonEffectsDispersalRiver2018]. The proper quantification of river network complexity is therefore crucial, and some researchers used a metric of "branching probability," i.e., the probability of observing a joining tributary per unit river distance [@yeakelSynchronisationStabilityRiver2014; @teruiMetapopulationStabilityBranching2018; @teruiEmergentDualScaling2021]. It has been shown that this measure reflects the fractal nature of river networks because it exhibits the sign of scale invariance [@peckhamReformulationHortonLaws1999; @teruiMetapopulationStabilityBranching2018; @rodriguez-iturbeFractalRiverBasins2001].
 
 A recent article by @carraroOptimalChannelNetworks2022 countered this classical observation and concluded that branching probability is "scale dependent." They seriously criticized past research [@teruiMetapopulationStabilityBranching2018; @teruiEmergentDualScaling2021; @yeakelSynchronisationStabilityRiver2014; @andersonEffectsDispersalRiver2018] for the use of branching probability as a measure of river fractals, provocatively concluding "*an alleged property of such random networks (branching probability) is a scale dependent quantity that does not reflect any recognized metric of rivers' fractal character...*" in the Abstract. Here, I would like to communicate my concern that their major conclusion is merely a misconception of the term "scale invariance." Indeed, the reanalysis of their data proved that branching probability is scale invariant. In what follows, I re-introduce the definition of scale invariance and show that branching probability meets this definition.
 
