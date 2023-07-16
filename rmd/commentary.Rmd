@@ -1,11 +1,11 @@
 ---
 title: "Revisiting scale invariance and scaling in ecology: River fractals as an example"
-output: word_document
-  # bookdown::pdf_document2:
-  #  keep_tex: true
-  #  latex_engine: xelatex
-  #  toc: false
-  #  number_sections: false
+output: 
+  bookdown::pdf_document2:
+   keep_tex: true
+   latex_engine: xelatex
+   toc: false
+   number_sections: false
 fontsize: 12pt
 mainfont: "Times New Roman"
 knit: (function(inputFile, encoding) {
@@ -84,7 +84,7 @@ Conversely, a "scale dependent" object possesses contrasting properties (Table 1
 
 ```{r example, echo=FALSE, message=FALSE, warning=FALSE, fig.width=8, fig.height=4, fig.cap="Graphical comparison of scale invariant and scale dependent objects. Black lines indicate an example of a scale invariant object (coastline), while gray lines show an example of a scale dependent object (square). For the square, the solid gray lines indicate the measured length as multiples of the integer ruler length $x$, with red points showing measurements at the divisors of 500 (the \"characteristic scale\"). The dotted lines denote the true perimeter of the square. The left (a) and right (b) panels are ordinary and log-log plots, respectively."}
 
-knitr::include_graphics(here::here("output/figure_example.pdf"))
+knitr::include_graphics(here::here("output/figure_1_example.pdf"))
 
 ```
 
@@ -114,7 +114,7 @@ where $p_i$ is the branching probability ($i$ represents a data point), $c_{w(i)
 
 ```{r fig-pr, fig.cap="(a and b) Examples of extracted river network (Eel River, US). In panel (a), a fine-resolution river network was extracted with $A_T = 12.7~\\text{km}^2$. In panel (b), a coarse river network was extracted with $A_T = 233.6~\\text{km}^2$. (c) Log-log plot substantiates the power-law scaling of branching probability $p$ along the axis of observation scale $A_T$. Colors indicate rivers highlighted in the original article [@carraroOptimalChannelNetworks2022]. Individual data points are shown in dots, whose transparency is proportional to the number of links $N_L$ (i.e., the sample size). Lines are predicted values from the robust regression model."}
 
-knitr::include_graphics(here::here("output/figure_scaling.pdf"))
+knitr::include_graphics(here::here("output/figure_2_scaling.pdf"))
 
 ```
 
@@ -160,7 +160,7 @@ The gulf between ecology and fractal theory is deep, and achieving consistent te
 
 Codes and data are available at <https://github.com/aterui/public-proj_fractal-river>.
 
-## Competing interest
+## Conflict of Interest
 
 None declared.
 
