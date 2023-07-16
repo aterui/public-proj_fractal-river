@@ -23,7 +23,9 @@ g_str <- foreach(i = 1:length(A)) %do% {
     ggplot() +
     geom_sf(color = "steelblue") +
     theme_bw() +
-    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+    theme(axis.text.x = element_text(angle = 90,
+                                     vjust = 0.5,
+                                     hjust=1)) +
     ggtitle(bquote(list(A[T]==.(A[i])~km^2)))
 }
 

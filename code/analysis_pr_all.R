@@ -73,6 +73,18 @@ ex_river <- c("KleineEmme",
               "Klamath",
               "Owyhee") %>% sort()
 
+ex_river_lab <- c(`KleineEmme` = "Kleine Emme",
+                  `Chisone` = "Chisone",
+                  `Tanaro` = "Tanaro",
+                  `Magra` = "Magra",
+                  `Piave` = "Piave",
+                  `Eel` = "Eel",
+                  `Thompson` = "Thompson",
+                  `Willamette` = "Willamette",
+                  `Marias` = "Marias",
+                  `Klamath` = "Klamath",
+                  `Owyhee` = "Owyhee") %>% sort()
+
 v_river <- c(river[river %in% ex_river],
              river[!(river %in% ex_river)])
 
@@ -93,28 +105,32 @@ g_p <- df_p %>%
              aes(alpha = log(n, 10)),
              size = r) +
   geom_line(data = df_pred %>% filter(!(river %in% ex_river)),
-            size = lwd) +
+            linewidth = lwd) +
   geom_point(data = . %>% filter(river %in% ex_river),
              aes(alpha = log(n, 10)),
              size = r) +
   geom_line(data = df_pred %>% filter(river %in% ex_river),
-            size = lwd) +
+            linewidth = lwd) +
   scale_x_continuous(trans = "log10") +
   scale_y_continuous(trans = "log10") +
   scale_color_manual(values = cols,
                      breaks = ex_river,
-                     labels = ex_river) +
+                     labels = ex_river_lab) +
   labs(color = "River",
        alpha = expression(log[10]~italic(N[L])),
-       y = expression("Branching probability"~p~"[km"^"-1"*"]"),
-       x = expression("Observation scale"~A[T]~"[km"^"2"*"]")) +
+       y = expression("Branching probability"~~p~~"(km"^"-1"*")"),
+       x = expression("Observation scale"~A[T]~"(km"^"2"*")")) +
   theme_bw() +
-  theme(panel.grid = element_blank())
+  theme(panel.grid = element_blank(),
+        axis.text = element_text(size = 12),
+        axis.title = element_text(size = 14),
+        legend.title = element_text(size = 14),
+        legend.text = element_text(size = 12))
 
 
 # export ------------------------------------------------------------------
 
-ggsave(g_p,
-       filename = here::here("output/figure_p.pdf"),
-       height = 6,
-       width = 8)
+# ggsave(g_p,
+#        filename = here::here("output/figure_p.pdf"),
+#        height = 6,
+#        width = 8)
